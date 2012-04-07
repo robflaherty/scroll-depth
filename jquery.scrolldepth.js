@@ -51,7 +51,8 @@
         '25%' : parseInt(docHeight * 0.25, 10),
         '50%' : parseInt(docHeight * 0.50, 10),
         '75%' : parseInt(docHeight * 0.75, 10),
-        '100%': docHeight
+        // 1px cushion to trigger 100% event in iOS
+        '100%': docHeight - 1
       };
     }
 
@@ -88,7 +89,7 @@
        */
 
       var docHeight = $(document).height(),
-        winHeight = $window.height(),
+        winHeight = window.innerHeight ? window.innerHeight : $window.height(),
         scrollDistance = $window.scrollTop() + winHeight,
 
         // Offset not being used yet
