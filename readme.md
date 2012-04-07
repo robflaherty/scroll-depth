@@ -1,7 +1,7 @@
 # jQuery Scroll Depth
-So this is a jQuery plugin that keeps and eye on how far down the page a user has scrolled and then reports data back to Google Analytics using the GA Events API. The default behavior reports on the 25%, 50%, 75%, and 100% scroll marks. It also sends an initial "Baseline" event to use as a benchmark.
+This is a jQuery plugin that keeps and eye on how far down the page a user has scrolled and then reports data back to Google Analytics using the GA Events API. The default behavior reports on the 25%, 50%, 75%, and 100% scroll marks. It also sends an initial "Baseline" event to use as a benchmark.
 
-In addition to the percentage scroll marks you can trigger events based on specific DOM elements. For example you can tell the plugin to report whenever the article comments DIV is scrolled into view, or whenever the footer is reached.
+In addition to the percentage scroll marks you can trigger events based on specific DOM elements. For example you can tell the plugin to report whenever the article comments div is scrolled into view, or whenever the footer is reached.
 
 Data is sent to Google Analytics so it's required that you have Google Analytics tracking implemented on your site.
 
@@ -21,7 +21,7 @@ $.scrollDepth({
 });
 ```
 ## Browser Support
-(Coming soon)
+Tested in Chrome (18), Firefox (8), Safari (5), Opera (10), IE (7-10). Also tested on iOS, Opera Mobile, and a few Android emulators.
 
 ## Contact
 [@robflaherty](https://twitter.com/#!/robflaherty)
