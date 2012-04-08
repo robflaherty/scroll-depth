@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Scroll Depth by robflaherty</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Scroll Depth</h1>
+        <p>A jQuery plugin to track page scroll depth</p>
+        <p class="view"><a href="https://github.com/robflaherty/jquery-scrolldepth">View the Project on GitHub <small>robflaherty/jquery-scrolldepth</small></a></p>
+        <ul>
+          <li><a href="https://github.com/robflaherty/jquery-scrolldepth/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/robflaherty/jquery-scrolldepth/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/robflaherty/jquery-scrolldepth">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>jQuery Scroll Depth</h1>
+
+<p>This is a jQuery plugin that keeps and eye on how far down the page a user has scrolled and then reports data back to Google Analytics using the GA Events API. The default behavior reports on the 25%, 50%, 75%, and 100% scroll marks. It also sends an initial "Baseline" event to use as a benchmark.</p>
+
+<p>In addition to the percentage scroll marks you can trigger events based on specific DOM elements. For example you can tell the plugin to report whenever the article comments div is scrolled into view, or whenever the footer is reached.</p>
+
+<p>Data is sent to Google Analytics so it's required that you have Google Analytics tracking implemented on your site.</p>
+
+<h2>Usage</h2>
+
+<div class="highlight">
+<pre><span class="c1">// Basic</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">scrollDepth</span><span class="p">();</span>
+
+<span class="c1">// With some options</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">scrollDepth</span><span class="p">({</span>
+  <span class="nx">minHeight</span><span class="o">:</span> <span class="mi">2000</span><span class="nx">px</span><span class="p">,</span> <span class="c1">// Only track for documents taller than 2000px | Default: 0</span>
+  <span class="nx">elements</span><span class="o">:</span> <span class="p">[</span><span class="s1">'#comments'</span><span class="p">,</span> <span class="s1">'footer'</span><span class="p">]</span> <span class="c1">// Track DOM elements | Default: []</span>
+  <span class="nx">percentage</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// Don't track depth percentage | Default: true</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<h2>GA Events Caveat</h2>
+
+<p>GA Events data messes with your bounce rate. If you're using Events tracking for anything you'll have to disregard the reported bounce rate and instead just look at the percentage of single-page visits (which is your true bounce rate).</p>
+
+<h2>Browser Support</h2>
+
+<p>Tested in Chrome (18), Firefox (8), Safari (5), Opera (10), IE (7-10). Also tested on iOS, Opera Mobile, and a few Android emulators.</p>
+
+<h2>Contact</h2>
+
+<p><a href="https://twitter.com/#!/robflaherty">@robflaherty</a></p>
+
+<h2>License</h2>
+
+<p>Licensed under the MIT and GPL licenses.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/robflaherty">robflaherty</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+  </body>
+</html>
