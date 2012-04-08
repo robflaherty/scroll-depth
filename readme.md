@@ -15,7 +15,7 @@ $.scrollDepth();
 
 // With some options
 $.scrollDepth({
-  minHeight: 2000px, // Only track for documents taller than 2000px | Default: 0
+  minHeight: 2000, // Only track for documents taller than 2000px | Default: 0
   elements: ['#comments', 'footer'] // Track DOM elements | Default: []
   percentage: false, // Don't track depth percentage | Default: true
 });
