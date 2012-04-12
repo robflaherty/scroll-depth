@@ -17,7 +17,8 @@
       <header>
         <h1>jQuery Scroll Depth</h1>
         <p>A jQuery plugin to track page scroll depth</p>
-        <p class="view"><a href="https://github.com/robflaherty/jquery-scrolldepth">View the Project on GitHub <small>robflaherty/jquery-scrolldepth</small></a></p>
+        <p class="view"><a href="http://www.ravelrumba.com/blog/tracking-scroll-depth-jquery-google-analytics/">Read the Blog Post &raquo;</a></p>
+        <p class="view"><a href="https://github.com/robflaherty/jquery-scrolldepth">View the Project on GitHub &raquo;<small>robflaherty/jquery-scrolldepth</small></a></p>
         <ul>
           <li><a href="https://github.com/robflaherty/jquery-scrolldepth/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/robflaherty/jquery-scrolldepth/tarball/master">Download <strong>TAR Ball</strong></a></li>
@@ -28,29 +29,52 @@
 
 <img src="images/google-analytics-scroll-depth.png" alt="Google Analytics Scroll Depth Tracking" style="border: 1px solid #E5E5E5; margin:0 0 20px; display: block;" />
 
-<p>This is a jQuery plugin that keeps an eye on how far down the page a user has scrolled and then reports data back to Google Analytics using the GA Events API. The default behavior reports on the 25%, 50%, 75%, and 100% scroll marks. It also sends an initial "Baseline" event to use as a benchmark.</p>
+<p>This is a jQuery plugin that tracks how far down the page a user has scrolled and then reports data back to Google Analytics using the GA Events API. The default behavior reports on the 25%, 50%, 75%, and 100% scroll marks. It also sends an initial "Baseline" event to use as a benchmark.</p>
 
 <p>In addition to the percentage scroll marks you can trigger events based on specific DOM elements. For example you can tell the plugin to report whenever the article comments div is scrolled into view, or whenever the footer is reached.</p>
 
 <p>Data is sent to Google Analytics so it's required that you have Google Analytics tracking implemented on your site.</p>
 
-<h2>Usage</h2>
+<h2>Setting it up</h2>
+<p>It's easy to set up. First, make sure you're using the Google Analytics <a href="http://code.google.com/apis/analytics/docs/tracking/asyncUsageGuide.html" target="_blank">asynchronous tracking code</a>. This is required; the plugin will not work with the old version of the tracking code. Then include <a href="http://jquery.com/" target="_blank">jQuery</a> and the plugin. After that you just have to initialize the plugin. It looks like this:</p>
 
 <div class="highlight">
-<pre><span class="c1">// Basic</span>
-<span class="nx">$</span><span class="p">.</span><span class="nx">scrollDepth</span><span class="p">();</span>
+<pre>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="jquery.scrolldepth.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+$(function() {
+  $.scrollDepth();
+});
+&lt;/script&gt;
+</pre>
+</div>
 
-<span class="c1">// With some options</span>
+<p>The code should be placed after your Google Analytics snippet and preferably at the bottom of the page, just before the closing body tag. (Note: If you’ve put the code at the bottom of the page, wrapping the plugin initialization in jQuery’s document ready event is not necessary.)</p>
+
+<h2>Plugin options</h2>
+The plugin offers a few options:
+<ul>
+  <li><strong>minHeight</strong>: This lets you enable scroll tracking based on a minimum document height. "Only track scroll events for documents taller than 2000px." The default setting is 0 (i.e., all pages are tracked).</li>
+  <li><strong>elements</strong>: This lets you record scroll events for specific elements on the page. "Track when the footer is scrolled into view." You can specify multiple elements but each should be a <em>unique element</em>. In other words you should specify IDs or singular HTML elements, not classes with multiple instances. The default setting is an empty array: [].</li>
+  <li><strong>percentage</strong>: If you want to turn off the default scroll percentage tracking and only track certain DOM elements, set this to false. The default setting is true.
+  </li>  
+</ul>
+
+<div class="highlight">
+<pre>
+<span class="c1">// Example with some options</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">scrollDepth</span><span class="p">({</span>
-  <span class="nx">minHeight</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// Only track for documents taller than 2000px | Default: 0</span>
-  <span class="nx">elements</span><span class="o">:</span> <span class="p">[</span><span class="s1">'#comments'</span><span class="p">,</span> <span class="s1">'footer'</span><span class="p">]</span> <span class="c1">// Track DOM elements | Default: []</span>
-  <span class="nx">percentage</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// Don't track depth percentage | Default: true</span>
+  <span class="nx">minHeight</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// Only track for documents taller than 2000px</span>
+  <span class="nx">elements</span><span class="o">:</span> <span class="p">[</span><span class="s1">'#comments'</span><span class="p">,</span> <span class="s1">'footer'</span><span class="p">]</span> <span class="c1">// Track DOM elements</span>
+  <span class="nx">percentage</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// Don't track depth percentage</span>
 <span class="p">});</span>
 </pre>
 </div>
 
 
-<h2>GA Events Caveat</h2>
+
+<h2>GA Events Funny Business</h2>
 
 <p>GA Events data messes with your bounce rate. If you're using Events tracking for anything you'll have to disregard the reported bounce rate and instead just look at the percentage of single-page visits (which is your true bounce rate).</p>
 
