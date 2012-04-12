@@ -72,11 +72,11 @@ The plugin offers a few options:
 </pre>
 </div>
 
+<h2>Google Analytics Events and Bounce Rate</h2>
 
+<p>By default, Google Analytics Events impact your bounce rate because Google Analytics defines a bounce as visit with one <em>interaction</em>. The event is viewed as a second interaction and so a single-pageview visit is not considered a bounce. If you've used GA events in the past you may have seen your bounce rate plummet (although pageview-based bounce rate could still be viewed by looking at the percentage of single-page visits).</p>
 
-<h2>GA Events Funny Business</h2>
-
-<p>GA Events data messes with your bounce rate. If you're using Events tracking for anything you'll have to disregard the reported bounce rate and instead just look at the percentage of single-page visits (which is your true bounce rate).</p>
+<p>Last October Google Analytics added an <code>opt_noninteraction</code> option to turn off this behavior (thanks to <a href="https://twitter.com/#!/justinph" target="_blank">@justinph</a> for the heads-up). The 0.1.1 release of this plugin now uses this option which means your bounce rate won't be affected. If you downloaded the first release and care about the displayed bounce rate, make sure to update to the latest version.</p>
 
 <h2>Browser Support</h2>
 

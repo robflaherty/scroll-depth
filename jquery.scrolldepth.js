@@ -1,5 +1,5 @@
 /*!
- * jquery.scrolldepth.js | v0.1
+ * jquery.scrolldepth.js | v0.1.1
  * Copyright (c) 2012 Rob Flaherty (@robflaherty)
  * Licensed under the MIT and GPL licenses.
  */
@@ -40,7 +40,7 @@
 
     function sendEvent(action, label) {
       if (!options.testing) {
-        _gaq.push(['_trackEvent', 'Scroll Depth', action, label]);
+        _gaq.push(['_trackEvent', 'Scroll Depth', action, label, 1, true]);
       } else {
         $('#console').html(action + ': ' + label);
       }
