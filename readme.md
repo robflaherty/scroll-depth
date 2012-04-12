@@ -7,6 +7,8 @@ Data is sent to Google Analytics so it's required that you have Google Analytics
 
 [View the Project Page](http://robflaherty.github.com/jquery-scrolldepth/)
 
+[View the Blog Post](http://www.ravelrumba.com/blog/tracking-scroll-depth-jquery-google-analytics/)
+
 ## Usage
 ```javascript
 // Basic
@@ -19,14 +21,20 @@ $.scrollDepth({
   percentage: false, // Don't track depth percentage | Default: true
 });
 ```
-## GA Events Caveat
-GA Events data messes with your bounce rate. If you're using Events tracking for anything you'll have to disregard the reported bounce rate and instead just look at the percentage of single-page visits (which is your true bounce rate).
+## GA Events Warning
+<del>GA Events data messes with your bounce rate.</del> As of version 0.1.1 of this plugin, the scroll events no longer impact your bounce rate. If you downloaded the initial 0.1.0 release and you care about the GA displayed bounce rate, update to the latest version.
 
 ## Browser Support
 Tested in Chrome (18), Firefox (8), Safari (5), Opera (10), IE (7-10). Also tested on iOS, Opera Mobile, and a few Android emulators.
 
 ## Contact
-[@robflaherty](https://twitter.com/#!/robflaherty)
+If you have any questions please leave a comment on the [associated blog post](http://www.ravelrumba.com/blog/tracking-scroll-depth-jquery-google-analytics/) or find me on Twitter at [@robflaherty](https://twitter.com/#!/robflaherty).
+
+## Changelog
+
+0.1.1 (4/12/12): Added `opt_noninteraction` option to GA event to avoid impacting bounce rate.
+
+0.1 (4/7/12): Initial release.
 
 ## License
 Licensed under the MIT and GPL licenses.
