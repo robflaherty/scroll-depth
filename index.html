@@ -36,7 +36,7 @@
 <p>Data is sent to Google Analytics so it's required that you have Google Analytics tracking implemented on your site.</p>
 
 <h2>Setting it up</h2>
-<p>It's easy to set up. First, make sure you're using the Google Analytics <a href="http://code.google.com/apis/analytics/docs/tracking/asyncUsageGuide.html" target="_blank">asynchronous tracking code</a>. This is required; the plugin will not work with the old version of the tracking code. Then include <a href="http://jquery.com/" target="_blank">jQuery</a> and the plugin. After that you just have to initialize the plugin. It looks like this:</p>
+<p>It's easy to set up. First, make sure you're using the Google Analytics <a href="http://code.google.com/apis/analytics/docs/tracking/asyncUsageGuide.html" target="_blank">asynchronous tracking code</a> (this is required; the plugin will not work with the old version of the tracking code). Then include <a href="http://jquery.com/" target="_blank">jQuery</a> (1.7+) and the plugin. After that you just have to initialize the plugin. It looks like this:</p>
 
 <div class="highlight">
 <pre>
@@ -77,6 +77,12 @@ The plugin offers a few options:
 <p>By default, Google Analytics Events impact your bounce rate because Google Analytics defines a bounce as visit with one <em>interaction</em>. The event is viewed as a second interaction and so a single-pageview visit is not considered a bounce. If you've used GA events in the past you may have seen your bounce rate plummet (although pageview-based bounce rate could still be viewed by looking at the percentage of single-page visits).</p>
 
 <p>Last October Google Analytics added an <code>opt_noninteraction</code> option to turn off this behavior (thanks to <a href="https://twitter.com/#!/justinph" target="_blank">@justinph</a> for the heads-up). The 0.1.1 release of this plugin now uses this option which means your bounce rate won't be affected. If you downloaded the first release and care about the displayed bounce rate, make sure to update to the latest version.</p>
+
+<h2>Requirements</h2>
+<ul>
+  <li>Google Analytics asynchronous tracking snippet</li>
+  <li>jQuery version 1.7+</li>
+</ul>
 
 <h2>Browser Support</h2>
 
