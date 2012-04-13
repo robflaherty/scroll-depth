@@ -3,8 +3,6 @@ This is a jQuery plugin that keeps an eye on how far down the page a user has sc
 
 In addition to the percentage scroll marks you can trigger events based on specific DOM elements. For example you can tell the plugin to report whenever the article comments div is scrolled into view, or whenever the footer is reached.
 
-Data is sent to Google Analytics so it's required that you have Google Analytics tracking implemented on your site.
-
 [View the Project Page](http://robflaherty.github.com/jquery-scrolldepth/)
 
 [View the Blog Post](http://www.ravelrumba.com/blog/tracking-scroll-depth-jquery-google-analytics/)
@@ -21,6 +19,10 @@ $.scrollDepth({
   percentage: false, // Don't track depth percentage | Default: true
 });
 ```
+## Requirements
+* Google Analytics asynchronous tracking snippet
+* jQuery 1.7+
+
 ## GA Events Warning
 <del>GA Events data messes with your bounce rate.</del> As of version 0.1.1 of this plugin, the scroll events no longer impact your bounce rate. If you downloaded the initial 0.1.0 release and you care about the GA displayed bounce rate, update to the latest version.
 
