@@ -1,5 +1,5 @@
 /*!
- * jquery.scrolldepth.js | v0.1.1
+ * jquery.scrolldepth.js | v0.1.2
  * Copyright (c) 2012 Rob Flaherty (@robflaherty)
  * Licensed under the MIT and GPL licenses.
  */
@@ -24,6 +24,8 @@
 
   $.scrollDepth = function(options) {
     
+    var startTime = +new Date;
+
     options = $.extend({}, defaults, options);
 
     // Return early if document height is too small
@@ -38,9 +40,15 @@
      * Functions
      */
 
-    function sendEvent(action, label) {
+    function sendEvent(action, label, timing) {
       if (!options.testing) {
+
         _gaq.push(['_trackEvent', 'Scroll Depth', action, label, 1, true]);
+
+        if (arguments.length > 2) {
+          _gaq.push(['_trackTiming', 'Scroll Depth', action, timing, label, 100]);
+        }
+
       } else {
         $('#console').html(action + ': ' + label);
       }
@@ -56,21 +64,21 @@
       };
     }
 
-    function checkMarks(marks, scrollDistance) {
+    function checkMarks(marks, scrollDistance, timing) {
       // Check each active mark
       $.each(marks, function(key, val) {
         if ( $.inArray(key, cache) === -1 && scrollDistance >= val ) {
-          sendEvent('Percentage', key);
+          sendEvent('Percentage', key, timing);
           cache.push(key);
         }
       });
     }
 
-    function checkElements(elements, scrollDistance) {
+    function checkElements(elements, scrollDistance, timing) {
       $.each(elements, function(index, elem) {
         if ( $.inArray(elem, cache) === -1 && $(elem).length ) {
           if ( scrollDistance >= $(elem).offset().top ) {
-            sendEvent('Elements', elem);
+            sendEvent('Elements', elem, timing);
             cache.push(elem);
           }
         }
@@ -96,7 +104,10 @@
         offset = parseInt(winHeight * (options.offset / 100), 10),
 
         // Recalculate percentage marks
-        marks = calculateMarks(docHeight);
+        marks = calculateMarks(docHeight),
+
+        // Timing
+        timing = +new Date - startTime;
 
       // If all marks already hit, unbind scroll event
       if (cache.length >= 4 + options.elements.length) {
@@ -106,12 +117,12 @@
 
       // Check specified DOM elements
       if (options.elements) {
-        checkElements(options.elements, scrollDistance);
+        checkElements(options.elements, scrollDistance, timing);
       }
 
       // Check standard marks
       if (options.percentage) {        
-        checkMarks(marks, scrollDistance);        
+        checkMarks(marks, scrollDistance, timing);
       }
     });
 

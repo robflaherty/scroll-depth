@@ -29,9 +29,11 @@
 
 <img src="images/google-analytics-scroll-depth.png" alt="Google Analytics Scroll Depth Tracking" style="border: 1px solid #E5E5E5; margin:0 0 20px; display: block;" />
 
-<p>This is a jQuery plugin that tracks how far down the page a user has scrolled and then reports data back to Google Analytics using the GA Events API. The default behavior reports on the 25%, 50%, 75%, and 100% scroll marks. It also sends an initial "Baseline" event to use as a benchmark.</p>
+<p>This is a jQuery plugin that tracks <strong>how far down the page a user has scrolled</strong> and records the data in Google Analytics using the GA Events API. The default behavior reports on the 25%, 50%, 75%, and 100% scroll points. It also sends an initial "Baseline" event to use as a benchmark.</p>
 
-<p>In addition to the percentage scroll marks you can trigger events based on specific DOM elements. For example you can tell the plugin to report whenever the article comments div is scrolled into view, or whenever the footer is reached.</p>
+<p>In addition to the percentage scroll points you can trigger events based on specific DOM elements. For example you can tell the plugin to report whenever the article comments div is scrolled into view, or whenever the footer is reached.</p>
+
+<p>The plugin also tracks <strong>timing data</strong> for each scroll event and records the times in Google Analytics via the <a href="https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingTiming" target="_blank">User Timing API</a>. You can find this data in Google Analytics at Content > Site Speed > User Timings. (Note: It's a good idea to <a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._setSiteSpeedSampleRate" target="_blank">increase the Site Speed sample rate</a> from the default 5% to 100%.)</p>
 
 <p>Data is sent to Google Analytics so it's required that you have Google Analytics tracking implemented on your site.</p>
 
