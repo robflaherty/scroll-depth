@@ -29,16 +29,18 @@
 
 <img src="images/google-analytics-scroll-depth.png" alt="Google Analytics Scroll Depth Tracking" style="border: 1px solid #E5E5E5; margin:0 0 20px; display: block;" />
 
-<p>This is a jQuery plugin that tracks <strong>how far down the page a user has scrolled</strong> and records the data in Google Analytics using the GA Events API. The default behavior reports on the 25%, 50%, 75%, and 100% scroll points. It also sends an initial "Baseline" event to use as a benchmark.</p>
+<p>This is a Google Analytics jQuery plugin that tracks how far your users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll marks, sending a Google Analytics Event at each one.</p>
 
-<p>In addition to the percentage scroll points you can trigger events based on specific DOM elements. For example you can tell the plugin to report whenever the article comments div is scrolled into view, or whenever the footer is reached.</p>
+<p>In addition to the percentage scroll marks you can trigger events based on specific DOM elements. For example you can tell the plugin to report whenever the article comments div is scrolled into view, or whenever the footer is reached.</p>
 
-<p>The plugin also tracks <strong>timing data</strong> for each scroll event and records the times in Google Analytics via the <a href="https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingTiming" target="_blank">User Timing API</a>. You can find this data in Google Analytics at Content > Site Speed > User Timings. (Note: It's a good idea to <a href="https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._setSiteSpeedSampleRate" target="_blank">increase the Site Speed sample rate</a> from the default 5% to 100%.)</p>
+<p>Timing data for each scroll event is reported to Google Analytics via the <a href="https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingTiming" target="_blank">User Timing API</a>. You can find this data in Google Analytics at Content > Site Speed > User Timings. This will give you data about how many seconds it takes users to reach each scroll point.</p>
 
-<p>Data is sent to Google Analytics so it's required that you have Google Analytics tracking implemented on your site.</p>
+<p>The plugin supports both <a href="https://support.google.com/analytics/answer/2790010?hl=en&ref_topic=2790009" target="_blank">Universal Analytics</a> and Classic Google Analytics.</p>
+
+
 
 <h2>Setting it up</h2>
-<p>It's easy to set up. First, make sure you're using the Google Analytics <a href="http://code.google.com/apis/analytics/docs/tracking/asyncUsageGuide.html" target="_blank">asynchronous tracking code</a> (this is required; the plugin will not work with the old version of the tracking code). Then include <a href="http://jquery.com/" target="_blank">jQuery</a> (1.7+) and the plugin. After that you just have to initialize the plugin. It looks like this:</p>
+<p>It's easy to set up. First, make sure you're using the Google Analytics <a href="http://code.google.com/apis/analytics/docs/tracking/asyncUsageGuide.html" target="_blank">asynchronous tracking code</a> or the <a href="https://support.google.com/analytics/answer/2790010?hl=en&ref_topic=2790009" target="_blank">Universal Analytics</a> tracking code. Then include <a href="http://jquery.com/" target="_blank">jQuery</a> (1.7+) and then the plugin. After that you just have to initialize the plugin. It looks like this:</p>
 
 <div class="highlight">
 <pre>
@@ -52,7 +54,7 @@ $(function() {
 </pre>
 </div>
 
-<p>The code should be placed after your Google Analytics snippet and preferably at the bottom of the page, just before the closing body tag. (Note: If you’ve put the code at the bottom of the page, wrapping the plugin initialization in jQuery’s document ready event is not necessary.)</p>
+<p>The code should be placed after your Google Analytics snippet and preferably at the bottom of the page, just before the closing body tag.</p>
 
 <h2>Plugin options</h2>
 The plugin offers a few options:
@@ -74,15 +76,9 @@ The plugin offers a few options:
 </pre>
 </div>
 
-<h2>Google Analytics Events and Bounce Rate</h2>
-
-<p>By default, Google Analytics Events impact your bounce rate because Google Analytics defines a bounce as visit with one <em>interaction</em>. The event is viewed as a second interaction and so a single-pageview visit is not considered a bounce. If you've used GA events in the past you may have seen your bounce rate plummet (although pageview-based bounce rate could still be viewed by looking at the percentage of single-page visits).</p>
-
-<p>Last October Google Analytics added an <code>opt_noninteraction</code> option to turn off this behavior (thanks to <a href="https://twitter.com/#!/justinph" target="_blank">@justinph</a> for the heads-up). The 0.1.1 release of this plugin now uses this option which means your bounce rate won't be affected. If you downloaded the first release and care about the displayed bounce rate, make sure to update to the latest version.</p>
-
 <h2>Requirements</h2>
 <ul>
-  <li>Google Analytics asynchronous tracking snippet</li>
+  <li>Google Analytics Asynchronous or Universal Analytics tracking code</li>
   <li>jQuery version 1.7+</li>
 </ul>
 
@@ -91,7 +87,7 @@ The plugin offers a few options:
 <p>Tested in Chrome (18), Firefox (8), Safari (5), Opera (10), IE (7-10). Also tested on iOS, Opera Mobile, and a few Android emulators.</p>
 
 <h2>Contact</h2>
-<p>If you have any questions please leave a comment on the <a href="http://www.ravelrumba.com/blog/tracking-scroll-depth-jquery-google-analytics/">associated blog post</a> or find me on Twitter at <a href="https://twitter.com/#!/robflaherty">@robflaherty</a>. If you want to get into the nerdier stuff, <a href="https://github.com/robflaherty/jquery-scrolldepth">you know where to go</a>.</p>
+<p>If you have any questions you can find me on Twitter at <a href="https://twitter.com/#!/robflaherty" target="_blank">@robflaherty</a>. If you want to get into the nerdier stuff, <a href="https://github.com/robflaherty/jquery-scrolldepth" target="_blank" >you know where to go</a>.</p>
 
 <h2>License</h2>
 
