@@ -10,7 +10,6 @@
   var defaults = {
     elements: [],
     minHeight: 0,
-    offset: 0, // Not used yet
     percentage: true,
     testing: false
   },
@@ -111,9 +110,6 @@
       var docHeight = $(document).height(),
         winHeight = window.innerHeight ? window.innerHeight : $window.height(),
         scrollDistance = $window.scrollTop() + winHeight,
-
-        // Offset not being used yet
-        offset = parseInt(winHeight * (options.offset / 100), 10),
 
         // Recalculate percentage marks
         marks = calculateMarks(docHeight),
