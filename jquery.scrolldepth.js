@@ -1,6 +1,6 @@
 /*!
- * jquery.scrolldepth.js | v0.1.2
- * Copyright (c) 2012 Rob Flaherty (@robflaherty)
+ * jquery.scrolldepth.js | v0.2
+ * Copyright (c) 2013 Rob Flaherty (@robflaherty)
  * Licensed under the MIT and GPL licenses.
  */
 ;(function ( $, window, document, undefined ) {
