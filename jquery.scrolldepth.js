@@ -1,5 +1,5 @@
 /*!
- * jquery.scrolldepth.js | v0.2
+ * jquery.scrolldepth.js | v0.3
  * Copyright (c) 2013 Rob Flaherty (@robflaherty)
  * Licensed under the MIT and GPL licenses.
  */
@@ -136,7 +136,6 @@
      */
 
     $window.on('scroll.scrollDepth', throttle(function() {
-      console.log('foo');
       /*
        * We calculate document and window height on each scroll event to
        * account for dynamic DOM changes.

@@ -35,6 +35,8 @@ If you have any questions please leave a comment on the [associated blog post](h
 
 ## Changelog
 
+0.3 (11/21/13): Added throttling of scroll event callback for better performance.
+
 0.2 (11/19/13): Added support for Universal Analytics.
 
 0.1.2 (5/29/12): Added GA User Timing events to allow time tracking for scroll points.
