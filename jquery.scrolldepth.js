@@ -97,11 +97,46 @@
     }
 
     /*
+     * Throttle function borrowed from:
+     * Underscore.js 1.5.2
+     * http://underscorejs.org
+     * (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+     * Underscore may be freely distributed under the MIT license.
+     */
+
+    function throttle(func, wait) {
+      var context, args, result;
+      var timeout = null;
+      var previous = 0;
+      var later = function() {
+        previous = new Date;
+        timeout = null;
+        result = func.apply(context, args);
+      };
+      return function() {
+        var now = new Date;
+        if (!previous) previous = now;
+        var remaining = wait - (now - previous);
+        context = this;
+        args = arguments;
+        if (remaining <= 0) {
+          clearTimeout(timeout);
+          timeout = null;
+          previous = now;
+          result = func.apply(context, args);
+        } else if (!timeout) {
+          timeout = setTimeout(later, remaining);
+        }
+        return result;
+      };
+    }
+
+    /*
      * Scroll Event
      */
 
-    $window.on('scroll.scrollDepth', function() {
-
+    $window.on('scroll.scrollDepth', throttle(function() {
+      console.log('foo');
       /*
        * We calculate document and window height on each scroll event to
        * account for dynamic DOM changes.
@@ -132,7 +167,7 @@
       if (options.percentage) {        
         checkMarks(marks, scrollDistance, timing);
       }
-    });
+    }, 500));
 
   };
 
