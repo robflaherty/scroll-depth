@@ -3,29 +3,37 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Scroll Depth by robflaherty</title>
+    <title>Scroll Depth - A Google Analytics plugin to track page scrolling</title>
     
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="canonical" href="http://parsnip.io/scroll-depth" />
+
+    <script>
+      if (window.location.href.indexOf('http://robflaherty.github.io') === 0) {
+        window.location.href = 'http://parsnip.io/scroll-depth/';
+      }
+    </script>
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-1413210-13', 'robflaherty.github.io');
-    ga('send', 'pageview');
+      ga('create', 'UA-1413210-12', 'parsnip.io');
+      ga('send', 'pageview');
     </script>    
   </head>
   <body>
     <div class="wrapper">
       <header>
-        <h1>jQuery Scroll Depth</h1>
-        <p>A Google Analytics plugin to track page scroll depth</p>
+        <h1>Scroll Depth</h1>
+        <p>A Google Analytics plugin to track page scrolling</p>
         <p class="view"><a href="https://github.com/robflaherty/jquery-scrolldepth">View the Project on GitHub &raquo;<small>robflaherty/jquery-scrolldepth</small></a></p>
         <ul>
           <li><a href="https://github.com/robflaherty/jquery-scrolldepth/zipball/master">Download <strong>ZIP File</strong></a></li>
@@ -37,9 +45,9 @@
 
 <img src="images/scroll-depth-chart.png" alt="Google Analytics Scroll Depth Tracking" style="border: 1px solid #E5E5E5; margin:0 0 20px; display: block;" />
 
-<p>This is a Google Analytics jQuery plugin that tracks how far your users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll marks, sending a Google Analytics Event at each one.</p>
+<p><strong>Scroll Depth</strong> is a Google Analytics plugin that tracks how far users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll marks, sending a Google Analytics Event at each one.</p>
 
-<p>In addition to the percentage scroll marks you can trigger events based on specific DOM elements. For example you can tell the plugin to report whenever the article comments div is scrolled into view, or whenever the footer is reached.</p>
+<p>In addition to the percentage scroll marks, you can record when specific elements on the page are scrolled into view. For example, on a blog, you could send a Scroll Depth event whenever the user reaches the end of a post.</p>
 
 <p>Timing data for each scroll event is reported to Google Analytics via the <a href="https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingTiming" target="_blank">User Timing API</a>. You can find this data in Google Analytics at Content > Site Speed > User Timings. This will give you data about how many seconds it takes users to reach each scroll point.</p>
 
@@ -48,7 +56,7 @@
 <img src="images/google-analytics-scroll-depth.png" alt="Google Analytics Scroll Depth Tracking" style="border: 1px solid #E5E5E5; margin:0 0 20px; display: block;" />
 
 <h2>Setting it up</h2>
-<p>It's easy to set up. First, make sure you're using the Google Analytics <a href="http://code.google.com/apis/analytics/docs/tracking/asyncUsageGuide.html" target="_blank">asynchronous tracking code</a> or the <a href="https://support.google.com/analytics/answer/2790010?hl=en&ref_topic=2790009" target="_blank">Universal Analytics</a> tracking code. Then include <a href="http://jquery.com/" target="_blank">jQuery</a> (1.7+) and then the plugin. After that you just have to initialize the plugin. It looks like this:</p>
+<p>The only requirement for the plugin (other than Google Analytics) is jQuery. To set it up, first make sure you're using the Google Analytics <a href="http://code.google.com/apis/analytics/docs/tracking/asyncUsageGuide.html" target="_blank">asynchronous tracking code</a> or the <a href="https://support.google.com/analytics/answer/2790010?hl=en&ref_topic=2790009" target="_blank">Universal Analytics</a> tracking code. Then include <a href="http://jquery.com/" target="_blank">jQuery</a> (1.7+) and then the plugin. After that you just have to initialize the plugin. It looks like this:</p>
 
 <div class="highlight">
 <pre>
@@ -92,7 +100,7 @@ The plugin offers a few options:
 
 <h2>Browser Support</h2>
 
-<p>Tested in Chrome (18), Firefox (8), Safari (5), Opera (10), IE (7-10). Also tested on iOS, Opera Mobile, and a few Android emulators.</p>
+<p>Tested in the latest versions of Chrome, Firefox, Safari, and Opera. Also works in IE 7-10. Also tested on iOS, Opera Mobile, and a few Android emulators.</p>
 
 <h2>Contact</h2>
 <p>If you have any questions you can find me on Twitter at <a href="https://twitter.com/#!/robflaherty" target="_blank">@robflaherty</a>. If you want to get into the nerdier stuff, <a href="https://github.com/robflaherty/jquery-scrolldepth" target="_blank" >you know where to go</a>.</p>
