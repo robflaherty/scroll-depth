@@ -5,7 +5,7 @@ In addition to the percentage scroll marks, you can record when specific element
 
 Timing data for each scroll event is reported to Google Analytics via the [User Timing API](https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingTiming). You can find this data in Google Analytics at Content > Site Speed > User Timings. This will give you data about how many seconds it takes users to reach each scroll point. (Note: Averages can be misleading. Make sure to dig through the GA UI to dig up more meaningful data. You may also want to [increase the sample rate](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._setSiteSpeedSampleRate) from the default 5% to 100%.)
 
-The plugin supports both [Universal Analytics](https://support.google.com/analytics/answer/2790010?hl=en&ref_topic=2790009) and Classic Google Analytics.
+The plugin supports [Universal Analytics](https://support.google.com/analytics/answer/2790010?hl=en&ref_topic=2790009), Classic Google Analytics, and Google Tag Manager.
 
 [View the Project Page](http://parsnip.io/scroll-depth/)
 
@@ -23,8 +23,20 @@ $.scrollDepth({
   percentage: false, // Don't track depth percentage | Default: true
 });
 ```
+
+## Google Tag Manager
+Here's the dataLayer variable information you'll need to integrate with GTM:
+
+* Scroll Distance Event Name = ScrollDistance
+* Scroll Timing Event Name = ScrollTiming
+* Event Category = {{eventCategory}}
+* Event Action = {{eventAction}}
+* Event Label = {{eventLabel}}
+* Event Value = {{eventValue}}
+* Event Non-Interaction = {{eventNonInteraction}}
+
 ## Requirements
-* Google Analytics asynchronous tracking snippet
+* Google Analytics
 * jQuery 1.7+
 
 ## Browser Support
@@ -34,6 +46,8 @@ Tested in Chrome (18), Firefox (8), Safari (5), Opera (10), IE (7-10). Also test
 If you have any questions please leave a comment on the [associated blog post](http://www.ravelrumba.com/blog/tracking-scroll-depth-jquery-google-analytics/) or find me on Twitter at [@robflaherty](https://twitter.com/robflaherty).
 
 ## Changelog
+
+0.4 (12/23/13): Added support for Google Tag Manager
 
 0.3 (11/21/13): Added throttling of scroll event callback for better performance.
 
