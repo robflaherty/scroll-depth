@@ -48,7 +48,6 @@
           if (arguments.length > 2) {
             ga('send', 'timing', 'Scroll Depth', action, timing, label);
           }
-
         }
 
         if (typeof(_gaq) !== "undefined") {
@@ -57,15 +56,14 @@
           if (arguments.length > 2) {
             _gaq.push(['_trackTiming', 'Scroll Depth', action, timing, label, 100]);
           }
-
         }
 
         if (typeof(dataLayer) !== "undefined") {
           dataLayer.push({'event':'ScrollDistance', 'eventCategory':'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': true});
+
           if (arguments.length > 2) {
             dataLayer.push({'event':'ScrollTiming', 'eventCategory':'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventTiming': timing});
           }
-
         }
 
       } else {
