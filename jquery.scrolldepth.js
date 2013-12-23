@@ -60,6 +60,14 @@
 
         }
 
+        if (typeof(dataLayer) !== "undefined") {
+          dataLayer.push({'event':'ScrollDistance', 'eventCategory':'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': true});
+          if (arguments.length > 2) {
+            dataLayer.push({'event':'ScrollTiming', 'eventCategory':'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventTiming': timing});
+          }
+
+        }
+
       } else {
         $('#console').html(action + ': ' + label);
       }
