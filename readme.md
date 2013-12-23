@@ -1,11 +1,11 @@
 # Scroll Depth
-Scroll Depth is a Google Analytics plugin that tracks how far users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll marks, sending a Google Analytics Event at each one. 
+Scroll Depth is a Google Analytics plugin that tracks how far users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll marks, sending a Google Analytics Event at each one.
 
 In addition to the percentage scroll marks, you can record when specific elements on the page are scrolled into view. For example, on a blog, you could send a Scroll Depth event whenever the user reaches the end of a post.
 
 Timing data for each scroll event is reported to Google Analytics via the [User Timing API](https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingTiming). You can find this data in Google Analytics at Content > Site Speed > User Timings. This will give you data about how many seconds it takes users to reach each scroll point. (Note: Averages can be misleading. Make sure to dig through the GA UI to dig up more meaningful data. You may also want to [increase the sample rate](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._setSiteSpeedSampleRate) from the default 5% to 100%.)
 
-The plugin supports [Universal Analytics](https://support.google.com/analytics/answer/2790010?hl=en&ref_topic=2790009), Classic Google Analytics, and Google Tag Manager.
+The plugin supports Universal Analytics, Classic Google Analytics, and Google Tag Manager.
 
 [View the Project Page](http://parsnip.io/scroll-depth/)
 
@@ -25,7 +25,7 @@ $.scrollDepth({
 ```
 
 ## Google Tag Manager
-Here's the dataLayer variable information you'll need to integrate with GTM:
+If you want to integrate with GTM, here are the dataLayer variable names:
 
 * Scroll Distance Event Name = ScrollDistance
 * Scroll Timing Event Name = ScrollTiming
