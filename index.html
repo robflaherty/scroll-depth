@@ -1,119 +1,120 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Scroll Depth - A Google Analytics plugin to track page scrolling</title>
-    
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="canonical" href="http://parsnip.io/scroll-depth" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <script>
-      if (window.location.href.indexOf('http://robflaherty.github.io') === 0) {
-        window.location.href = 'http://parsnip.io/scroll-depth/';
-      }
-    </script>
+  <title>Scroll Depth - A Google Analytics plugin to track page scrolling</title>
+  <link rel="canonical" href="http://parsnip.io/scroll-depth/" />
+  
+  <script>
+    if (window.location.href.indexOf('http://robflaherty.github.io') === 0) {
+      window.location.href = 'http://parsnip.io/scroll-depth/';
+    }
+  </script>
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <link href='http://fonts.googleapis.com/css?family=Lato|Josefin+Sans:400,600,700|Josefin+Slab' rel='stylesheet' type='text/css'>
+  <link href="css/normalize.css" rel="stylesheet" />
+  <link href="css/prism.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
 
-      ga('create', 'UA-1413210-12', 'parsnip.io');
-      ga('send', 'pageview');
-    </script>    
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Scroll Depth</h1>
-        <p>A Google Analytics plugin to track page scrolling</p>
-        <p class="view"><a href="https://github.com/robflaherty/jquery-scrolldepth">View the Project on GitHub &raquo;<small>robflaherty/jquery-scrolldepth</small></a></p>
-        <ul>
-          <li><a href="https://github.com/robflaherty/jquery-scrolldepth/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/robflaherty/jquery-scrolldepth/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/robflaherty/jquery-scrolldepth">Fork On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-<img src="images/scroll-depth-chart.png" alt="Google Analytics Scroll Depth Tracking" style="border: 1px solid #E5E5E5; margin:0 0 20px; display: block;" />
+    ga('create', 'UA-1413210-12', 'parsnip.io');
+    ga('send', 'pageview');
+  </script>
+  
+  <script src="js/jquery-1.10.2.js"></script>
+  <script src="js/modernizr.custom.61372.js"></script>
+</head>
+<body>
+  <div id="content">
+  <div class="inner">
+  <h1>Scroll Depth</h1>
+  <h2>A Google Analytics plugin to track page scrolling</h2>
+<img src="img/scroll-depth-chart.png" alt="Google Analytics Scroll Depth Tracking" class="img1" />
 
-<p><strong>Scroll Depth</strong> is a Google Analytics plugin that tracks how far users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll marks, sending a Google Analytics Event at each one.</p>
+<p>Scroll Depth is a small Google Analytics plugin that tracks how far users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll marks, sending a Google Analytics Event at each one.</p>
 
-<p>In addition to the percentage scroll marks, you can record when specific elements on the page are scrolled into view. For example, on a blog, you could send a Scroll Depth event whenever the user reaches the end of a post.</p>
+<p>You can also track when specific elements on the page are scrolled into view. For example, on a blog, you could send a Scroll Depth event whenever the user reaches the end of a post.</p>
 
-<p>Timing data for each scroll event is reported to Google Analytics via the <a href="https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingTiming" target="_blank">User Timing API</a>. You can find this data in Google Analytics at Content > Site Speed > User Timings. This will give you data about how many seconds it takes users to reach each scroll point.</p>
+<p>Timing data for scroll events is reported to Google Analytics via the <a href="https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingTiming" target="_blank">User Timing API</a>. This will give you data about how many seconds it takes users to reach each scroll point.</p>
 
-<p>The plugin supports both <a href="https://support.google.com/analytics/answer/2790010?hl=en&ref_topic=2790009" target="_blank">Universal Analytics</a> and Classic Google Analytics.</p>
+<p>The plugin supports Universal Analytics, Classic Google Analytics, and Google Tag Manager.</p>
 
-<img src="images/google-analytics-scroll-depth.png" alt="Google Analytics Scroll Depth Tracking" style="border: 1px solid #E5E5E5; margin:0 0 20px; display: block;" />
+<p class="download">
+  <a href="https://raw.github.com/robflaherty/jquery-scrolldepth/master/jquery.scrolldepth.min.js" target="_blank" class="button button-download">Download (1.8 kb)</a>
+  <a href="https://github.com/robflaherty/jquery-scrolldepth" target="_blank" class="button">View on Github</a>
+</p>
 
-<h2>Setting it up</h2>
-<p>The only requirement for the plugin (other than Google Analytics) is jQuery. To set it up, first make sure you're using the Google Analytics <a href="http://code.google.com/apis/analytics/docs/tracking/asyncUsageGuide.html" target="_blank">asynchronous tracking code</a> or the <a href="https://support.google.com/analytics/answer/2790010?hl=en&ref_topic=2790009" target="_blank">Universal Analytics</a> tracking code. Then include <a href="http://jquery.com/" target="_blank">jQuery</a> (1.7+) and then the plugin. After that you just have to initialize the plugin. It looks like this:</p>
+<h2>Using it</h2>
 
-<div class="highlight">
-<pre>
-&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"&gt;&lt;/script&gt;
+<!-- <img src="img/google-analytics-scroll-depth.png" alt="Google Analytics Scroll Depth Tracking" style="border: 1px solid #E5E5E5; margin:0 0 20px; display: block;" class="img2" /> -->
+
+<p>The two requirements are Google Analytics and <a href="http://jquery.com/" target="_blank">jQuery</a>. After loading the plugin you'll need to initalize it as in the example below. Make sure to place this after your Google Analytics tracking snippet.</p>
+
+<pre><code class="language-javascript">&lt;script src="jquery-1.10.2.min.js"&gt;&lt;/script&gt;
 &lt;script src="jquery.scrolldepth.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 $(function() {
   $.scrollDepth();
 });
-&lt;/script&gt;
+&lt;/script&gt;</code>
 </pre>
-</div>
-
-<p>The code should be placed after your Google Analytics snippet and preferably at the bottom of the page, just before the closing body tag.</p>
 
 <h2>Plugin options</h2>
-The plugin offers a few options:
+
+<h3>minHeight</h3>
+<p>This lets you enable scroll tracking based on a minimum document height. "Only track scroll events for documents taller than 2000px." The default setting is 0 (all pages are tracked).</p>
+
+<h3>elements</h3>
+<p>This lets you record scroll events for specific elements on the page. "Track when the footer is scrolled into view." You can specify multiple elements but each should be a <em>unique element</em>. In other words you should specify IDs or singular HTML elements, not classes with multiple instances. The default setting is an empty array: [].</p>
+
+<h3>percentage</h3>
+<p>If you want to turn off the default scroll percentage tracking and only track certain DOM elements, set this to false. The default setting is true.</p>  
+
+<pre><code class="language-javascript">// Example with options
+$.scrollDepth({
+  minHeight: 2000,
+  elements: ['#comments', 'footer']
+  percentage: false
+});</code></pre>
+
+<h2>Google Tag Manager</h2>
+<p>If you want to integrate with Google Tag Manager, here are the dataLayer variable names:</p>
 <ul>
-  <li><strong>minHeight</strong>: This lets you enable scroll tracking based on a minimum document height. "Only track scroll events for documents taller than 2000px." The default setting is 0 (i.e., all pages are tracked).</li>
-  <li><strong>elements</strong>: This lets you record scroll events for specific elements on the page. "Track when the footer is scrolled into view." You can specify multiple elements but each should be a <em>unique element</em>. In other words you should specify IDs or singular HTML elements, not classes with multiple instances. The default setting is an empty array: [].</li>
-  <li><strong>percentage</strong>: If you want to turn off the default scroll percentage tracking and only track certain DOM elements, set this to false. The default setting is true.
-  </li>  
+<li>Scroll Distance Event Name = ScrollDistance</li>
+<li>Scroll Timing Event Name = ScrollTiming</li>
+<li>Event Category = {{eventCategory}}</li>
+<li>Event Action = {{eventAction}}</li>
+<li>Event Label = {{eventLabel}}</li>
+<li>Event Value = {{eventValue}}</li>
+<li>Event Non-Interaction = {{eventNonInteraction}}</li>
 </ul>
-
-<div class="highlight">
-<pre>
-<span class="c1">// Example with some options</span>
-<span class="nx">$</span><span class="p">.</span><span class="nx">scrollDepth</span><span class="p">({</span>
-  <span class="nx">minHeight</span><span class="o">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="c1">// Only track for documents taller than 2000px</span>
-  <span class="nx">elements</span><span class="o">:</span> <span class="p">[</span><span class="s1">'#comments'</span><span class="p">,</span> <span class="s1">'footer'</span><span class="p">]</span> <span class="c1">// Track DOM elements</span>
-  <span class="nx">percentage</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// Don't track depth percentage</span>
-<span class="p">});</span>
-</pre>
-</div>
-
-<h2>Requirements</h2>
-<ul>
-  <li>Google Analytics Asynchronous or Universal Analytics tracking code</li>
-  <li>jQuery version 1.7+</li>
-</ul>
-
 <h2>Browser Support</h2>
 
 <p>Tested in the latest versions of Chrome, Firefox, Safari, and Opera. Also works in IE 7-10. Also tested on iOS, Opera Mobile, and a few Android emulators.</p>
 
 <h2>Contact</h2>
-<p>If you have any questions you can find me on Twitter at <a href="https://twitter.com/#!/robflaherty" target="_blank">@robflaherty</a>. If you want to get into the nerdier stuff, <a href="https://github.com/robflaherty/jquery-scrolldepth" target="_blank" >you know where to go</a>.</p>
+<p>If you have any questions you can find me on Twitter at <a href="https://twitter.com/robflaherty" target="_blank">@robflaherty</a>. If you want to get into the nerdier stuff, <a href="https://github.com/robflaherty/jquery-scrolldepth" target="_blank" >you know where to go</a>.</p>
 
 <h2>License</h2>
 
-<p>Licensed under the MIT and GPL licenses.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/robflaherty">robflaherty</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-  </body>
+<p style="margin: 0;">Licensed under the MIT and GPL licenses.</p>  
+</div>
+</div>
+
+  <div id="q1" class="q" data-scroll="25%"><span>25%</span><i>&middot;</i></div>
+  <div id="q2" class="q" data-scroll="50%"><span>50%</span><i>&middot;</i></div>
+  <div id="q3" class="q" data-scroll="75%"><span>75%</span><i>&middot;</i></div>
+  <div id="q4" class="q" data-scroll="100%"><span>100%</span><i>&middot;</i></div>
+
+  <script src="js/prism.js"></script>  
+  <script src="js/main.js"></script>
+</body>
 </html>
