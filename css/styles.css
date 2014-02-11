@@ -69,6 +69,14 @@ body {
   background-image: linear-gradient(to bottom, #d23131, #962121);
   /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */ }
 
+#top {
+  background: #962121;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 16px;
+  z-index: 1000000;
+  position: relative; }
+
 #content {
   max-width: 500px;
   margin: 0 auto;
@@ -122,8 +130,10 @@ a:hover {
   text-decoration: none; }
 
 .download {
-  text-align: center;
   margin: 60px 0; }
+
+.buttons {
+  text-align: center; }
 
 .button {
   display: inline-block;
@@ -195,15 +205,12 @@ a:hover {
   animation: myanim 0.8s infinite;
   /* Chrome, Firefox 16+, IE 10+, Opera 12.10+ */ }
 
-.no-csstransitions .q i {
-  display: none; }
-
 /* Hide the scroll marks on smaller screens */
 @media only screen and (max-width: 799px) {
   .q {
     display: none; } }
 @media only screen and (max-width: 549px) {
-  body {
+  .wrap {
     padding-left: 20px;
     padding-right: 20px; } }
 @media only screen and (max-width: 459px) {
@@ -212,6 +219,9 @@ a:hover {
     margin: 0 0 30px; } }
 @media only screen and (max-width: 479px) {
   body {
+    font-size: 18px; }
+
+  .wrap {
     padding-left: 10px;
     padding-right: 10px;
     font-size: 18px; }

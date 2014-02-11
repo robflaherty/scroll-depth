@@ -46,6 +46,8 @@ body { padding: 0; margin: 0; font-family: 'Lato'; font-size: 20px; line-height:
 
 }
 
+#top { background: darken($body-start, 15); padding: 10px 0; text-align: center; font-size: 16px; z-index: 1000000; position: relative;  }
+
 #content { max-width: 500px; margin: 0 auto; padding-top: 50px; padding-bottom: 50px; z-index: 1000000; position: relative; }
 
 //#content .inner { left: -50%; position: relative; }
@@ -68,7 +70,10 @@ pre, pre[class*="language-"] { font-size: 14px; margin: 0 0 30px; display: block
 a { color: #fff; text-decoration: underline; }
 a:hover { text-decoration: none; }
 
-.download { text-align: center; margin: 60px 0; }
+.download { margin: 60px 0; }
+
+.buttons { text-align: center; }
+
 
 .button { display: inline-block; border-radius: 5px; 
   //background: darken(#D23131, 30);
@@ -125,7 +130,7 @@ transform: translate3d(0,0,0);
 }
 
 @media only screen and (max-width:549px) {
-  body { padding-left: 20px; padding-right: 20px; }
+  .wrap { padding-left: 20px; padding-right: 20px; }
 }
 
 @media only screen and (max-width:459px) {
@@ -133,7 +138,8 @@ transform: translate3d(0,0,0);
 }
 
 @media only screen and (max-width:479px) {
-  body { padding-left: 10px; padding-right: 10px; font-size: 18px; }
+  body { font-size: 18px; }
+  .wrap { padding-left: 10px; padding-right: 10px; font-size: 18px; }
   #content { padding: 20px 0; }
   h1 { font-size: 56px; }
   h2 { font-size: 24px; }
