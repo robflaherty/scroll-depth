@@ -47,6 +47,8 @@ If you have any questions please leave a comment on the [associated blog post](h
 
 ## Changelog
 
+0.4.1 (2/13/14): Fixed GTM firing double events
+
 0.4 (12/23/13): Added support for Google Tag Manager
 
 0.3 (11/21/13): Added throttling of scroll event callback for better performance.
