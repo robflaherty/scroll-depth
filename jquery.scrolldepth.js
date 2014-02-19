@@ -43,7 +43,7 @@
     function sendEvent(action, label, timing) {
       if (!options.testing) {
 
-        if (typeof(dataLayer) !== "undefined") {
+        if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function") {
           dataLayer.push({'event':'ScrollDistance', 'eventCategory':'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': true});
 
           if (arguments.length > 2) {
@@ -51,7 +51,7 @@
           }
         } else {
 
-          if (typeof(ga) !== "undefined") {
+          if (typeof ga === "function") {
             ga('send', 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': 1});
 
             if (arguments.length > 2) {
@@ -59,7 +59,7 @@
             }
           }
 
-          if (typeof(_gaq) !== "undefined") {
+          if (typeof _gaq !== "undefined" && typeof _gaq.push === "function") {
             _gaq.push(['_trackEvent', 'Scroll Depth', action, label, 1, true]);
 
             if (arguments.length > 2) {
