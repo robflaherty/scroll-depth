@@ -11,7 +11,8 @@
   var defaults = {
     elements: [],
     minHeight: 0,
-    percentage: true
+    percentage: true,
+    userTiming: true
   },
 
   $window = $(window),
@@ -44,7 +45,7 @@
         if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function") {
           dataLayer.push({'event':'ScrollDistance', 'eventCategory':'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': true});
 
-          if (arguments.length > 2) {
+          if (options.userTiming && arguments.length > 2) {
             dataLayer.push({'event':'ScrollTiming', 'eventCategory':'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventTiming': timing});
           }
         } else {
@@ -52,7 +53,7 @@
           if (typeof ga === "function") {
             ga('send', 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': 1});
 
-            if (arguments.length > 2) {
+            if (options.userTiming && arguments.length > 2) {
               ga('send', 'timing', 'Scroll Depth', action, timing, label);
             }
           }
@@ -60,7 +61,7 @@
           if (typeof _gaq !== "undefined" && typeof _gaq.push === "function") {
             _gaq.push(['_trackEvent', 'Scroll Depth', action, label, 1, true]);
 
-            if (arguments.length > 2) {
+            if (options.userTiming && arguments.length > 2) {
               _gaq.push(['_trackTiming', 'Scroll Depth', action, timing, label, 100]);
             }
           }
