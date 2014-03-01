@@ -64,15 +64,13 @@
 
     function sendEvent(action, label, scrollDistance, timing) {
 
-      scrollDistance = Math.floor(scrollDistance/250) * 250;
-
       if (googleTagManager) {
 
         dataLayer.push({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': true});
 
         if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
           lastPixelDepth = scrollDistance;
-          dataLayer.push({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': 'Pixel Depth', 'eventLabel': scrollDistance.toString(), 'eventValue': 1, 'eventNonInteraction': true});
+          dataLayer.push({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': 'Pixel Depth', 'eventLabel': rounded(scrollDistance), 'eventValue': 1, 'eventNonInteraction': true});
         }
 
         if (options.userTiming && arguments.length > 3) {
@@ -87,7 +85,7 @@
 
           if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
             lastPixelDepth = scrollDistance;
-            ga('send', 'event', 'Scroll Depth', 'Pixel Depth', scrollDistance.toString(), 1, {'nonInteraction': 1});
+            ga('send', 'event', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, {'nonInteraction': 1});
           }
 
           if (options.userTiming && arguments.length > 3) {
@@ -102,7 +100,7 @@
 
           if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
             lastPixelDepth = scrollDistance;
-            _gaq.push(['_trackEvent', 'Scroll Depth', 'Pixel Depth', scrollDistance.toString(), 1, true]);
+            _gaq.push(['_trackEvent', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, true]);
           }
 
           if (options.userTiming && arguments.length > 3) {
@@ -144,6 +142,11 @@
           }
         }
       });
+    }
+
+    function rounded(scrollDistance) {
+      // Returns String
+      return (Math.floor(scrollDistance/250) * 250).toString();
     }
 
     /*
