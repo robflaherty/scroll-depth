@@ -73,7 +73,7 @@
         '50%' : parseInt(docHeight * 0.50, 10),
         '75%' : parseInt(docHeight * 0.75, 10),
         // 1px cushion to trigger 100% event in iOS
-        '100%': docHeight - 1
+        '100%': docHeight - 5
       };
     }
 
