@@ -64,6 +64,8 @@
 
     function sendEvent(action, label, scrollDistance, timing) {
 
+      scrollDistance = Math.floor(scrollDistance/250) * 250;
+
       if (googleTagManager) {
 
         dataLayer.push({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': true});
