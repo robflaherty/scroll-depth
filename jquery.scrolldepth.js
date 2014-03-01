@@ -5,25 +5,30 @@
  * Licensed under the MIT and GPL licenses.
  */
 ;(function ( $, window, document, undefined ) {
-  
+
   "use strict";
 
   var defaults = {
-    elements: [],
     minHeight: 0,
+    elements: [],
     percentage: true,
-    userTiming: true
-  },
+    userTiming: true,
+    pixelDepth: true
+  };
 
-  $window = $(window),
-  cache = [];
+  var $window = $(window),
+    cache = [],
+    lastPixelDepth = 0,
+    universalGA,
+    classicGA,
+    googleTagManager;
 
   /*
    * Plugin
    */
 
   $.scrollDepth = function(options) {
-    
+
     var startTime = +new Date;
 
     options = $.extend({}, defaults, options);
@@ -33,6 +38,23 @@
       return;
     }
 
+    /*
+     * Determine which version of GA is being used
+     * "ga", "_gaq", and "dataLayer" are the possible globals
+     */
+
+    if (typeof ga === "function") {
+      universalGA = true;
+    }
+
+    if (typeof _gaq !== "undefined" && typeof _gaq.push === "function") {
+      classicGA = true;
+    }
+
+    if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function") {
+      googleTagManager = true;
+    }
+
     // Establish baseline (0% scroll)
     sendEvent('Percentage', 'Baseline');
 
@@ -40,32 +62,55 @@
      * Functions
      */
 
-    function sendEvent(action, label, timing) {
+    function sendEvent(action, label, scrollDistance, timing) {
 
-        if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function") {
-          dataLayer.push({'event':'ScrollDistance', 'eventCategory':'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': true});
+      if (googleTagManager) {
 
-          if (options.userTiming && arguments.length > 2) {
-            dataLayer.push({'event':'ScrollTiming', 'eventCategory':'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventTiming': timing});
-          }
-        } else {
+        dataLayer.push({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': true});
 
-          if (typeof ga === "function") {
-            ga('send', 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': 1});
-
-            if (options.userTiming && arguments.length > 2) {
-              ga('send', 'timing', 'Scroll Depth', action, timing, label);
-            }
-          }
-
-          if (typeof _gaq !== "undefined" && typeof _gaq.push === "function") {
-            _gaq.push(['_trackEvent', 'Scroll Depth', action, label, 1, true]);
-
-            if (options.userTiming && arguments.length > 2) {
-              _gaq.push(['_trackTiming', 'Scroll Depth', action, timing, label, 100]);
-            }
-          }
+        if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
+          lastPixelDepth = scrollDistance;
+          dataLayer.push({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': 'Pixel Depth', 'eventLabel': scrollDistance.toString(), 'eventValue': 1, 'eventNonInteraction': true});
         }
+
+        if (options.userTiming && arguments.length > 3) {
+          dataLayer.push({'event': 'ScrollTiming', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventTiming': timing});
+        }
+
+      } else {
+
+        if (universalGA) {
+
+          ga('send', 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': 1});
+
+          if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
+            lastPixelDepth = scrollDistance;
+            ga('send', 'event', 'Scroll Depth', 'Pixel Depth', scrollDistance.toString(), 1, {'nonInteraction': 1});
+          }
+
+          if (options.userTiming && arguments.length > 3) {
+            ga('send', 'timing', 'Scroll Depth', action, timing, label);
+          }
+
+        }
+
+        if (classicGA) {
+
+          _gaq.push(['_trackEvent', 'Scroll Depth', action, label, 1, true]);
+
+          if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
+            lastPixelDepth = scrollDistance;
+            _gaq.push(['_trackEvent', 'Scroll Depth', 'Pixel Depth', scrollDistance.toString(), 1, true]);
+          }
+
+          if (options.userTiming && arguments.length > 3) {
+            _gaq.push(['_trackTiming', 'Scroll Depth', action, timing, label, 100]);
+          }
+
+        }
+
+      }
+
     }
 
     function calculateMarks(docHeight) {
@@ -82,7 +127,7 @@
       // Check each active mark
       $.each(marks, function(key, val) {
         if ( $.inArray(key, cache) === -1 && scrollDistance >= val ) {
-          sendEvent('Percentage', key, timing);
+          sendEvent('Percentage', key, scrollDistance, timing);
           cache.push(key);
         }
       });
@@ -92,7 +137,7 @@
       $.each(elements, function(index, elem) {
         if ( $.inArray(elem, cache) === -1 && $(elem).length ) {
           if ( scrollDistance >= $(elem).offset().top ) {
-            sendEvent('Elements', elem, timing);
+            sendEvent('Elements', elem, scrollDistance, timing);
             cache.push(elem);
           }
         }
@@ -166,7 +211,7 @@
       }
 
       // Check standard marks
-      if (options.percentage) {        
+      if (options.percentage) {
         checkMarks(marks, scrollDistance, timing);
       }
     }, 500));

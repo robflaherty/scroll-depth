@@ -16,7 +16,7 @@
   <script>
     var _gaq = {};
     _gaq.push = function(data) {
-      console.log("_gaq.push(" + data + ");");
+      console.log("_gaq.push(" + JSON.stringify(data) + ");");
     };
 
     var dataLayer = {};
@@ -34,7 +34,8 @@
     //ga = undefined;
 
     $.scrollDepth({
-      elements: ['#main', 'footer']
+      elements: ['#main', 'footer'],
+      userTiming: false
     });
   </script>
 </body>
