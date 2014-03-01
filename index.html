@@ -13,7 +13,7 @@
     if (window.location.href.indexOf('http://robflaherty.github.io') === 0) {
       window.location.href = 'http://projects.parsnip.io/scroll-depth/';
     }
-  </script>  
+  </script>
 
   <link href='http://fonts.googleapis.com/css?family=Lato|Josefin+Sans:400,600,700|Josefin+Slab' rel='stylesheet' type='text/css'>
   <link href="css/normalize.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
     ga('create', 'UA-1413210-12', 'parsnip.io');
     ga('send', 'pageview');
   </script>
-  
+
   <script src="js/jquery-1.10.2.js"></script>
   <script src="js/modernizr.custom.61372.js"></script>
 </head>
@@ -45,11 +45,9 @@
   <h2>A Google Analytics plugin to track page scrolling</h2>
 <img src="img/scroll-depth-chart.png" alt="Google Analytics Scroll Depth Tracking" class="img1" />
 
-<p>Scroll Depth is a small Google Analytics plugin that tracks how far users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll marks, sending a Google Analytics Event at each one.</p>
+<p>Scroll Depth is a small Google Analytics plugin that allows you to measure how far down the page your users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll points, sending a Google Analytics Event at each one.</p>
 
-<p>You can also track when specific elements on the page are scrolled into view. For example, on a blog, you could send a Scroll Depth event whenever the user reaches the end of a post.</p>
-
-<p>Timing data for scroll events is reported to Google Analytics via the <a href="https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingTiming" target="_blank">User Timing API</a>. This will give you data about how many seconds it takes users to reach each scroll point.</p>
+<p>You can also track when specific elements on the page are scrolled into view. On a blog, for example, you could send a Scroll Depth event whenever the user reaches the end of a post.</p>
 
 <p>The plugin supports Universal Analytics, Classic Google Analytics, and Google Tag Manager.</p>
 
@@ -58,14 +56,24 @@
   <a href="https://github.com/robflaherty/jquery-scrolldepth" target="_blank" class="button">View on Github</a>
 </p>
 
-<h2>Using it</h2>
+<h2>The Data</h2>
+<p>Everything is sent to Google Analytics via Events. Under the Event Category "Scroll Depth" you'll see the 3 main event types: Percentage, Elements, and Pixel Depth.</p>
 
-<!-- <img src="img/google-analytics-scroll-depth.png" alt="Google Analytics Scroll Depth Tracking" style="border: 1px solid #E5E5E5; margin:0 0 20px; display: block;" class="img2" /> -->
+<p>Percentage events are fired at the 25%, 50%, 75%, and 100% scrolling points. There's also a Baseline event which fires as soon as the page loads.</p>
 
-<p>The two requirements are Google Analytics and <a href="http://jquery.com/" target="_blank">jQuery</a>. After loading the plugin you'll need to initalize it as in the example below. Make sure to place this after your Google Analytics tracking snippet.</p>
+<p>The Elements events correspond to any DOM elements you may have specified in the Elements option.</p>
 
-<pre><code class="language-javascript">&lt;script src="jquery-1.10.2.min.js"&gt;&lt;/script&gt;
-&lt;script src="jquery.scrolldepth.js"&gt;&lt;/script&gt;
+<p>Pixel Depth events (new in version 0.5) record the scroll distance in pixels, rounded down to the nearest 250px increment. While the percentage events provide a relative measure of scroll depth, pixel depth events provide an absolute measure. This can be useful for comparing across devices where the relative percentage heights vary greatly (e.g., desktop vs mobile).</p>
+
+<p>Note that Pixel Depth events are only sent when Percentage or Elements tracking events are sent. For example, when the 50% scroll event is triggered, a pixel depth event will also be sent to record the current deepest scroll point in pixels.</p>
+
+<p>There's one more type of event, which is the User Timing event. User Timing events are fired alongside the other events and their purpose is to record the amount of time between the page load and the scroll point. These events are found under Site Speed > User Timings.</p>
+
+<h2>Setting it up</h2>
+
+<p>The two requirements are Google Analytics and <a href="http://jquery.com/" target="_blank">jQuery</a> (v1.7+). Load the plugin and initialize Scroll Depth as in the example below. Make sure to place the initialization code after your Google Analytics tracking snippet.</p>
+
+<pre><code class="language-javascript">&lt;script src="jquery.scrolldepth.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 $(function() {
   $.scrollDepth();
@@ -76,20 +84,33 @@ $(function() {
 <h2>Plugin options</h2>
 
 <h3>minHeight</h3>
-<p>This lets you enable scroll tracking based on a minimum document height. "Only track scroll events for documents taller than 2000px." The default setting is 0 (all pages are tracked).</p>
+<p>This lets you disable scroll tracking for documents that don't meet a height requirement. "Only track scroll events for documents taller than 2000px." The default setting is 0 (all pages are tracked).</p>
 
 <h3>elements</h3>
-<p>This lets you record scroll events for specific elements on the page. "Track when the footer is scrolled into view." You can specify multiple elements but each should be a <em>unique element</em>. In other words you should specify IDs or singular HTML elements, not classes with multiple instances. The default setting is an empty array: [].</p>
+<p>This lets you record scroll events for specific elements on the page. "Track when the footer is scrolled into view." You can specify multiple elements but each should be a <em>unique element</em>. In other words you should specify IDs or singular HTML elements, not classes with multiple instances. Accepts jQuery selectors. The default setting is an empty array: [].</p>
 
 <h3>percentage</h3>
-<p>If you want to turn off the default scroll percentage tracking and only track certain DOM elements, set this to false. The default setting is true.</p>  
+<p>If you want to turn off scroll percentage tracking and track only the DOM elements you specify in the <code>elements</code> option, set this to false. The default setting is true.</p>
+
+<h3>userTiming</h3>
+<p>You can turn off User Timing events by setting this to false. The default setting is true.</p>
+
+<h3>pixelDepth</h3>
+<p>You can turn off Pixel Depth events by setting this to false. The default setting is true.</p>
 
 <pre><code class="language-javascript">// Example with options
 $.scrollDepth({
   minHeight: 2000,
-  elements: ['#comments', 'footer']
-  percentage: false
+  elements: ['#comments', 'footer'],
+  percentage: false,
+  userTiming: false,
+  pixelDepth: false
 });</code></pre>
+
+<h2>Collection quotas</h2>
+<p>The current session limit for Google Analytics hits is 500 (review Google Analytics's <a href="https://developers.google.com/analytics/devguides/collection/ios/limits-quotas">Collection quotas</a> for more details).</p>
+
+<p>For reference, with the default use of the plugin, a pageview in which a user scrolls all the way to the bottom will trigger 13 events: 1 Baseline + 4 Percentage + 4 Pixel Depth + 4 User Timing. If you're concerned about exceeding the collection limit you can use the plugin options to reduce the types of events sent. (I'd start by disabling User Timing events.)</p>
 
 <h2>Google Tag Manager</h2>
 <p>If you'd like to integrate with Google Tag Manager, the dataLayer variable names are below. For step-by-step instructions on how to use the plugin with Google Tag Manager, <a href="http://andygibson.us/2013/10/track-scroll-depth-using-google-tag-manager/" target="_blank">check out this blog post</a> by Andy Gibson.</p>
@@ -116,7 +137,7 @@ $.scrollDepth({
 
 <h2>License</h2>
 
-<p style="margin: 0; text-align: center;">Licensed under the MIT license.</p>  
+<p style="margin: 0; text-align: center;">Licensed under the MIT license.</p>
 </div>
 </div>
 </div>
@@ -126,7 +147,7 @@ $.scrollDepth({
   <div id="q3" class="q" data-scroll="75%"><span>75%</span><i>&middot;</i></div>
   <div id="q4" class="q" data-scroll="100%"><span>100%</span><i>&middot;</i></div>
 
-  <script src="js/prism.js"></script>  
+  <script src="js/prism.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

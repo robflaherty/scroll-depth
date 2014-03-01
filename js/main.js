@@ -34,7 +34,7 @@ function throttle(func, wait) {
 }
 
 
-$(function() {
+$(window).load(function() {
   var $window = $(window),
   docHeight = $(document).height(),
     winHeight = window.innerHeight ? window.innerHeight : $window.height(),
@@ -57,7 +57,7 @@ $(function() {
         '50%' : parseInt(docHeight * 0.50, 10),
         '75%' : parseInt(docHeight * 0.75, 10),
         // 1px cushion to trigger 100% event in iOS
-        '100%': docHeight - 1
+        '100%': docHeight - 5
       };
     }
 
@@ -65,11 +65,13 @@ $(function() {
 
       $.each(marks, function(key, val) {
         if ( $.inArray(key, cache) === -1 && scrollDistance >= val ) {
-          
-          $('.q[data-scroll="' + key + '"] span').addClass('on');
-          $('.q[data-scroll="' + key + '"] i').css({left: document.documentElement.clientWidth + 'px'});
-          
-          cache.push(key);
+
+          setTimeout(function() {
+            $('.q[data-scroll="' + key + '"] span').addClass('on');
+            $('.q[data-scroll="' + key + '"] i').css({left: document.documentElement.clientWidth + 'px'});
+
+            cache.push(key);
+          }, 250);
 
         }
       });
@@ -85,6 +87,8 @@ $window.on('scroll.scrollDepth', throttle(function() {
 
   // Recalculate percentage marks
   var marks = calculateMarks(docHeight);
+
+  console.log(docHeight);
 
   // If all marks already hit, unbind scroll event
   if (cache.length >= 4) {
