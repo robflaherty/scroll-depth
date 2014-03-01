@@ -11,11 +11,29 @@
   <div id="main" style="background: #ccc; height: 2000px">#main</div>
   <footer style="background: #999; height: 200px; display: block;">footer</footer>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="../jquery.scrolldepth.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="../jquery.scrolldepth.js"></script>
   <script>
+    var _gaq = {};
+    _gaq.push = function(data) {
+      console.log("_gaq.push(" + data + ");");
+    };
+
+    var dataLayer = {};
+    dataLayer.push = function(data) {
+      console.log("dataLayer.push(" + JSON.stringify(data) + ");");
+    };
+
+    var ga = function(params) {
+      var args = Array.prototype.slice.call(arguments, 1);
+      console.log("ga(" + args.join(',') + ");");
+    };
+
+    _gaq = undefined;
+    dataLayer = undefined;
+    //ga = undefined;
+
     $.scrollDepth({
-      testing: true,
       elements: ['#main', 'footer']
     });
   </script>

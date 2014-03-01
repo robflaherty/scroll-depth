@@ -11,8 +11,7 @@
   var defaults = {
     elements: [],
     minHeight: 0,
-    percentage: true,
-    testing: false
+    percentage: true
   },
 
   $window = $(window),
@@ -41,7 +40,6 @@
      */
 
     function sendEvent(action, label, timing) {
-      if (!options.testing) {
 
         if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function") {
           dataLayer.push({'event':'ScrollDistance', 'eventCategory':'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': true});
@@ -67,10 +65,6 @@
             }
           }
         }
-
-      } else {
-        $('#console').html(action + ': ' + label);
-      }
     }
 
     function calculateMarks(docHeight) {
