@@ -13,7 +13,8 @@
     elements: [],
     percentage: true,
     userTiming: true,
-    pixelDepth: true
+    pixelDepth: true,
+    nonInteraction: true
   };
 
   var $window = $(window),
@@ -66,11 +67,11 @@
 
       if (googleTagManager) {
 
-        dataLayer.push({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': true});
+        dataLayer.push({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': options.nonInteraction});
 
         if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
           lastPixelDepth = scrollDistance;
-          dataLayer.push({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': 'Pixel Depth', 'eventLabel': rounded(scrollDistance), 'eventValue': 1, 'eventNonInteraction': true});
+          dataLayer.push({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': 'Pixel Depth', 'eventLabel': rounded(scrollDistance), 'eventValue': 1, 'eventNonInteraction': options.nonInteraction});
         }
 
         if (options.userTiming && arguments.length > 3) {
@@ -81,11 +82,11 @@
 
         if (universalGA) {
 
-          ga('send', 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': 1});
+          ga('send', 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': options.nonInteraction ? 1 : 0});
 
           if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
             lastPixelDepth = scrollDistance;
-            ga('send', 'event', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, {'nonInteraction': 1});
+            ga('send', 'event', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, {'nonInteraction': options.nonInteraction ? 1 : 0});
           }
 
           if (options.userTiming && arguments.length > 3) {
@@ -96,11 +97,11 @@
 
         if (classicGA) {
 
-          _gaq.push(['_trackEvent', 'Scroll Depth', action, label, 1, true]);
+          _gaq.push(['_trackEvent', 'Scroll Depth', action, label, 1, options.nonInteraction]);
 
           if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
             lastPixelDepth = scrollDistance;
-            _gaq.push(['_trackEvent', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, true]);
+            _gaq.push(['_trackEvent', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, options.nonInteraction]);
           }
 
           if (options.userTiming && arguments.length > 3) {
