@@ -1,0 +1,27 @@
+{
+  "name": "Scroll Depth",
+  "main": "jquery.scrolldepth.js",
+  "version": "0.6.0",
+  "homepage": "http://scrolldepth.parsnip.io",
+  "authors": [
+    "Rob Flaherty"
+  ],
+  "description": "A Google Analytics plugin for measuring page scrolling.",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "analytics",
+    "google-analytics",
+    "tracking"
+  ],
+  "dependencies": {
+    "jquery" : ">=1.8"
+  },  
+  "license": "MIT",
+  "ignore": [
+    "test",
+    "build.sh",
+    "contributing.md"
+  ]
+}
