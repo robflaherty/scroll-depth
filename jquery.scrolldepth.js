@@ -55,8 +55,12 @@
       googleTagManager = true;
     }
 
-    // Establish baseline (0% scroll)
-    sendEvent('Percentage', 'Baseline');
+    if (options.percentage) {
+      // Establish baseline (0% scroll)
+      sendEvent('Percentage', 'Baseline');
+    } else if (options.elements) {
+      sendEvent('Elements', 'Baseline');
+    }
 
     /*
      * Functions
