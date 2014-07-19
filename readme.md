@@ -14,6 +14,8 @@ If you have any questions you can find me on Twitter at [@robflaherty](https://t
 
 ## Changelog
 
+0.6 (7/18/14): https://github.com/robflaherty/jquery-scrolldepth/issues/36
+
 0.5 (3/1/14): Added Pixel Depth option. Added option to turn off UserTiming. Removed test mode option.
 
 0.4.1 (2/13/14): Fixed GTM firing double events
