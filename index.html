@@ -77,8 +77,8 @@
 
 <pre><code class="language-javascript">&lt;script src="jquery.scrolldepth.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-$(function() {
-  $.scrollDepth();
+jQuery(function() {
+  jQuery.scrollDepth();
 });
 &lt;/script&gt;</code>
 </pre>
@@ -100,13 +100,18 @@ $(function() {
 <h3>pixelDepth</h3>
 <p>You can turn off Pixel Depth events by setting this to false. The default setting is true.</p>
 
+<h3>nonInteraction</h3>
+<p>By default, Scroll Depth events use nonInteraction=true, which means that scroll events will not impact your bounce rate. Change this option to false if you consider scrolling an activity that negates a bounce.</p>
+
+<h3>Example usage</h3>
 <pre><code class="language-javascript">// Example with options
-$.scrollDepth({
+jQuery.scrollDepth({
   minHeight: 2000,
   elements: ['#comments', 'footer'],
   percentage: false,
   userTiming: false,
-  pixelDepth: false
+  pixelDepth: false,
+  nonInteraction: false
 });</code></pre>
 
 <h2>Collection quotas</h2>
@@ -128,7 +133,7 @@ $.scrollDepth({
 </ul>
 <h2>Browser Support</h2>
 
-<p>Tested in the latest versions of Chrome, Firefox, Safari, and Opera. Also works in IE 7-10. Also tested on iOS, Opera Mobile, and a few Android emulators.</p>
+<p>Tested in the latest versions of Chrome, Firefox, Safari, and Opera. Also works in IE 7-11. Also tested on iOS, Opera Mobile, and a few Android emulators.</p>
 
 <h2>Contact</h2>
 
