@@ -53,7 +53,7 @@
     }
 
     //use the GTM syntax for stand event handler
-    if (typeof options.eventHandler === "funtion") {
+    if (typeof options.eventHandler === "function") {
       standardEventHandler = options.eventHandler;
     }
     else if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function") {
