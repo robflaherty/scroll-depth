@@ -14,7 +14,8 @@
     percentage: true,
     userTiming: true,
     pixelDepth: true,
-    nonInteraction: true
+    nonInteraction: true,
+    gtmOverride: false
   };
 
   var $window = $(window),
@@ -52,7 +53,7 @@
       classicGA = true;
     }
 
-    if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function") {
+    if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function" && !options.gtmOverride) {
       googleTagManager = true;
     }
 
