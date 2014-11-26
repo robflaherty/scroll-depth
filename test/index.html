@@ -12,7 +12,7 @@
   <footer style="background: #999; height: 200px; display: block;">footer</footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="../jquery.scrolldepth.js"></script>
+  <script src="../jquery.scrolldepth.min.js"></script>
   <script>
     var _gaq = {};
     _gaq.push = function(data) {
@@ -31,11 +31,14 @@
 
     _gaq = undefined;
     dataLayer = undefined;
-    //ga = undefined;
+    ga = undefined;
 
     $.scrollDepth({
       elements: ['#main', 'footer'],
-      userTiming: false
+      userTiming: true,
+      eventHandler: function(data) {
+        console.log(data)
+      }
     });
   </script>
 </body>
