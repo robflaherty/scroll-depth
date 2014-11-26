@@ -45,11 +45,11 @@
   <h2>A Google Analytics plugin for measuring page scrolling</h2>
 <img src="img/scroll-depth-chart.png" alt="Google Analytics Scroll Depth Tracking" class="img1" />
 
-<p>Scroll Depth is a small Google Analytics plugin that allows you to measure how far down the page your users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll points, sending a Google Analytics Event at each one.</p>
+<p>Scroll Depth is a small Google Analytics plugin that allows you to measure how far down the page users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll points, sending a Google Analytics Event at each one.</p>
 
 <p>You can also track when specific elements on the page are scrolled into view. On a blog, for example, you could send a Scroll Depth event whenever the user reaches the end of a post.</p>
 
-<p>The plugin supports Universal Analytics, Classic Google Analytics, and Google Tag Manager.</p>
+<p>The plugin provides native support for Universal Analytics, Classic Google Analytics, and Google Tag Manager. Using the <strong>eventHandler</strong> option the plugin can also be used with any analytics service that supports events.</p>
 
 <p class="buttons download">
   <a href="https://raw.github.com/robflaherty/jquery-scrolldepth/master/jquery.scrolldepth.min.js" target="_blank" class="button button-download">Download (1.8 kb)</a>
@@ -103,6 +103,9 @@ jQuery(function() {
 <h3>nonInteraction</h3>
 <p>By default, Scroll Depth events use nonInteraction=true, which means that scroll events will not impact your bounce rate. Change this option to false if you consider scrolling an activity that negates a bounce.</p>
 
+<h3>eventHandler</h3>
+<p>If you'd like to use Scroll Depth with something other than Google Analytics you can use this option to define a callback. See example below.</p>
+
 <h3>Example usage</h3>
 <pre><code class="language-javascript">// Example with options
 jQuery.scrollDepth({
@@ -111,7 +114,10 @@ jQuery.scrollDepth({
   percentage: false,
   userTiming: false,
   pixelDepth: false,
-  nonInteraction: false
+  nonInteraction: false,
+  eventHandler: function(data) {
+    console.log(data)
+  }
 });</code></pre>
 
 <h2>Collection quotas</h2>
