@@ -88,11 +88,11 @@
 
         if (universalGA) {
 
-          ga('send', 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': options.nonInteraction ? 1 : 0});
+          ga('send', 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': options.nonInteraction});
 
           if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
             lastPixelDepth = scrollDistance;
-            ga('send', 'event', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, {'nonInteraction': options.nonInteraction ? 1 : 0});
+            ga('send', 'event', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, {'nonInteraction': options.nonInteraction});
           }
 
           if (options.userTiming && arguments.length > 3) {
