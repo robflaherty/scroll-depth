@@ -1,6 +1,6 @@
 /*!
  * @preserve
- * jquery.scrolldepth.js | v0.6
+ * jquery.scrolldepth.js | v0.7
  * Copyright (c) 2014 Rob Flaherty (@robflaherty)
  * Licensed under the MIT and GPL licenses.
  */
@@ -52,14 +52,9 @@
       classicGA = true;
     }
 
-    //use the GTM syntax for stand event handler
     if (typeof options.eventHandler === "function") {
       standardEventHandler = options.eventHandler;
-    }
-    else if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function") {
-      //auto detect GTM - only do this if options.eventHandler doesn't exists so that
-      //                  you could use that option to change/map the event structure
-      //                  and not fire the events twice
+    } else if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function") {
       standardEventHandler = dataLayer.push;
     }
 
