@@ -63,7 +63,7 @@
 
 <p>The Elements events correspond to any DOM elements you may have specified in the Elements option.</p>
 
-<p>Pixel Depth events (new in version 0.5) record the scroll distance in pixels, rounded down to the nearest 250px increment. While the percentage events provide a relative measure of scroll depth, pixel depth events provide an absolute measure. This can be useful for comparing across devices where the relative percentage heights vary greatly (e.g., desktop vs mobile).</p>
+<p>Pixel Depth events record the scroll distance in pixels, rounded down to the nearest 250px increment. While the percentage events provide a relative measure of scroll depth, pixel depth events provide an absolute measure. This can be useful for comparing across devices where the relative percentage heights vary greatly (e.g., desktop vs mobile).</p>
 
 <p>Note that Pixel Depth events are only sent when Percentage or Elements tracking events are sent. For example, when the 50% scroll event is triggered, a pixel depth event will also be sent to record the current deepest scroll point in pixels.</p>
 
@@ -106,7 +106,9 @@ jQuery(function() {
 <h3>eventHandler</h3>
 <p>If you'd like to use Scroll Depth with something other than Google Analytics you can use this option to define a callback. See example below.</p>
 
-<h3>Example usage</h3>
+<p><strong>Note:</strong> If you use this option it will override the default event handler and events will not be sent to Google Analytics.</p>
+
+<h3>Example using options</h3>
 <pre><code class="language-javascript">// Example with options
 jQuery.scrollDepth({
   minHeight: 2000,
@@ -114,7 +116,12 @@ jQuery.scrollDepth({
   percentage: false,
   userTiming: false,
   pixelDepth: false,
-  nonInteraction: false,
+  nonInteraction: false
+});</code></pre>
+
+<h3>Example using custom event handler</h3>
+<pre><code class="language-javascript">// Example with custom events
+jQuery.scrollDepth({
   eventHandler: function(data) {
     console.log(data)
   }
