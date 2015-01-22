@@ -88,8 +88,6 @@ $window.on('scroll.scrollDepth', throttle(function() {
   // Recalculate percentage marks
   var marks = calculateMarks(docHeight);
 
-  console.log(docHeight);
-
   // If all marks already hit, unbind scroll event
   if (cache.length >= 4) {
     $window.off('scroll.scrollDepth');
