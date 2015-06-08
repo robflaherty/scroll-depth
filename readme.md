@@ -14,6 +14,8 @@ If you have any questions you can find me on Twitter at [@robflaherty](https://t
 
 ## Changelog
 
+0.7.2 (6/8/15): Fixed bug: https://github.com/robflaherty/jquery-scrolldepth/issues/62
+
 0.7 (11/26/14): Added custom callback for sending scroll events to non-GA services
 
 0.6 (7/18/14): https://github.com/robflaherty/jquery-scrolldepth/issues/36
