@@ -55,7 +55,11 @@
     if (typeof options.eventHandler === "function") {
       standardEventHandler = options.eventHandler;
     } else if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function") {
-      standardEventHandler = dataLayer.push;
+
+      standardEventHandler = function(data) {
+        dataLayer.push(data);
+      }
+
     }
 
     if (options.percentage) {
