@@ -10,7 +10,7 @@ Bug reports and code contributions are welcome. Please see [contributing.md](htt
 There's a test HTML file that mocks the Google Analytics functions and writes the GA Event data to the console.
 
 ## Contact
-If you have any questions you can find me on Twitter at [@robflaherty](https://twitter.com/robflaherty).
+If you have any questions you can find me on Twitter at [@robflaherty](https://twitter.com/robflaherty). If you need help fixing something, **please provide a URL**.
 
 ## Changelog
 
