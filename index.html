@@ -103,6 +103,12 @@ jQuery(function() {
 <h3>nonInteraction</h3>
 <p>By default, Scroll Depth events use nonInteraction=true, which means that scroll events will not impact your bounce rate. Change this option to false if you consider scrolling an activity that negates a bounce.</p>
 
+<h3>gtmOverride</h3>
+<p>By default, if Scroll Depth detects Google Tag Manager it assumes that you're using it for your GA implementation. If you're using GTM but not using it for GA then you can set this option to true and Scroll Depth will ignore GTM.</p>
+
+<h3>gaGlobal</h3>
+<p>Use this option if you're using Universal Analytics and have changed the global object name from the default "ga". Note: Scroll Depth automatically supports the common custom object name, "__gaTracker".</p>
+
 <h3>eventHandler</h3>
 <p>If you'd like to use Scroll Depth with something other than Google Analytics you can use this option to define a callback. See example below.</p>
 
