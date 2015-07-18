@@ -15,7 +15,8 @@
     userTiming: true,
     pixelDepth: true,
     nonInteraction: true,
-    gaGlobal: false
+    gaGlobal: false,
+    gtmOverride: false
   };
 
   var $window = $(window),
@@ -63,12 +64,11 @@
 
     if (typeof options.eventHandler === "function") {
       standardEventHandler = options.eventHandler;
-    } else if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function") {
+    } else if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function" && !options.gtmOverride) {
 
       standardEventHandler = function(data) {
         dataLayer.push(data);
       };
-
     }
 
     if (options.percentage) {
