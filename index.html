@@ -45,11 +45,11 @@
   <h2>A Google Analytics plugin for measuring page scrolling</h2>
 <img src="img/scroll-depth-chart.png" alt="Google Analytics Scroll Depth Tracking" class="img1" />
 
-<p>Scroll Depth is a small Google Analytics plugin that allows you to measure how far down the page users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll points, sending a Google Analytics Event at each one.</p>
+<p>Scroll Depth is a small Google Analytics plugin that lets you measure how far users are scrolling. It monitors the 25%, 50%, 75%, and 100% scroll points, sending a Google Analytics Event for each one. You can also track when specific elements on the page are scrolled into view.</p>
 
-<p>You can also track when specific elements on the page are scrolled into view. On a blog, for example, you could send a Scroll Depth event whenever the user reaches the end of a post.</p>
+<p>The plugin provides native support for Universal Analytics, Classic Google Analytics, and Google Tag Manager, and can be used with any analytics service that supports events.</p>
 
-<p>The plugin provides native support for Universal Analytics, Classic Google Analytics, and Google Tag Manager. Using the <strong>eventHandler</strong> option the plugin can also be used with any analytics service that supports events.</p>
+<p>Check out some of the sites that are <a href="http://libscore.com/#$.scrollDepth" target="_blank">using Scroll Depth</a>.</p>
 
 <p class="buttons download">
   <a href="https://raw.github.com/robflaherty/jquery-scrolldepth/master/jquery.scrolldepth.min.js" target="_blank" class="button button-download">Download (1.8 kb)</a>
@@ -128,7 +128,7 @@ jQuery.scrollDepth({
 });</code></pre>
 
 <h2>Collection quotas</h2>
-<p>The current session limit for Google Analytics hits is 500 (review Google Analytics's <a href="https://developers.google.com/analytics/devguides/collection/ios/limits-quotas">Collection quotas</a> for more details).</p>
+<p>The current session limit for Google Analytics hits is 500 (review Google Analytics's <a href="https://developers.google.com/analytics/devguides/collection/ios/limits-quotas" target="_blank">Collection quotas</a> for more details).</p>
 
 <p>For reference, with the default use of the plugin, a pageview in which a user scrolls all the way to the bottom will trigger 13 events: 1 Baseline + 4 Percentage + 4 Pixel Depth + 4 User Timing. If you're concerned about exceeding the collection limit you can use the plugin options to reduce the types of events sent. (I'd start by disabling User Timing events.)</p>
 
@@ -144,9 +144,14 @@ jQuery.scrollDepth({
 <li>Event Value = {{eventValue}}</li>
 <li>Event Non-Interaction = {{eventNonInteraction}}</li>
 </ul>
-<h2>Browser Support</h2>
+
+<h2>Browser Compatibility</h2>
 
 <p>Tested in the latest versions of Chrome, Firefox, Safari, and Opera. Also works in IE 7-11. Also tested on iOS, Opera Mobile, and a few Android emulators.</p>
+
+<h2>Commercial Support</h2>
+
+<p>Under the MIT license, Scroll Depth is free to use in commercial projects. If you're interested in commercial support to help with implementation or data analysis, <a href="mailto:hello@parsnip.io">let's chat</a>.</p>
 
 <h2>Contact</h2>
 
