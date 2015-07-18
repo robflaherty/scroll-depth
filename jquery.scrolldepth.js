@@ -14,7 +14,8 @@
     percentage: true,
     userTiming: true,
     pixelDepth: true,
-    nonInteraction: true
+    nonInteraction: true,
+    gaGlobal: false
   };
 
   var $window = $(window),
@@ -22,6 +23,7 @@
     lastPixelDepth = 0,
     universalGA,
     classicGA,
+    gaGlobal,
     standardEventHandler;
 
   /*
@@ -41,11 +43,18 @@
 
     /*
      * Determine which version of GA is being used
-     * "ga", "_gaq", and "dataLayer" are the possible globals
+     * "ga", "__gaTracker", _gaq", and "dataLayer" are the possible globals
      */
 
-    if (typeof ga === "function") {
+    if (options.gaGlobal) {
       universalGA = true;
+      gaGlobal = options.gaGlobal;
+    } else if (typeof ga === "function") {
+      universalGA = true;
+      gaGlobal = 'ga';
+    } else if (typeof __gaTracker === "function") {
+      universalGA = true;
+      gaGlobal = '__gaTracker';
     }
 
     if (typeof _gaq !== "undefined" && typeof _gaq.push === "function") {
@@ -58,7 +67,7 @@
 
       standardEventHandler = function(data) {
         dataLayer.push(data);
-      }
+      };
 
     }
 
@@ -86,7 +95,7 @@
 
         if (universalGA) {
 
-          ga('send', 'event', 'Scroll Depth', action, 'Baseline', 1, {'nonInteraction': true });
+          window[gaGlobal]('send', 'event', 'Scroll Depth', action, 'Baseline', 1, {'nonInteraction': true });
 
         }
 
@@ -119,15 +128,15 @@
 
         if (universalGA) {
 
-          ga('send', 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': options.nonInteraction});
+          window[gaGlobal]('send', 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': options.nonInteraction});
 
           if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
             lastPixelDepth = scrollDistance;
-            ga('send', 'event', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, {'nonInteraction': options.nonInteraction});
+            window[gaGlobal]('send', 'event', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, {'nonInteraction': options.nonInteraction});
           }
 
           if (options.userTiming && arguments.length > 3) {
-            ga('send', 'timing', 'Scroll Depth', action, timing, label);
+            window[gaGlobal]('send', 'timing', 'Scroll Depth', action, timing, label);
           }
 
         }
