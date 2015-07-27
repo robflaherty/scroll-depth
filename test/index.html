@@ -30,13 +30,15 @@
     };
 
     _gaq = undefined;
-    //dataLayer = undefined;
+    dataLayer = undefined;
     //ga = undefined;
 
     $.scrollDepth({
-      elements: ['#main', 'footer'],
-      userTiming: true,
-      gtmOverride: true,
+      elements: ['#main'],
+      userTiming: false,
+      percentage: false,
+      pixelDepth: false
+      //gtmOverride: true,
       //eventHandler: function(data) {
         //console.log(data)
       //}
