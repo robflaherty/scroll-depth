@@ -5,7 +5,7 @@
   <title>jQuery Scroll Depth Test</title>
 </head>
 <body>
-  <div id="console" style="background: #aaa; width: 200px; position: fixed; top: 0; right: 0; text-align: center; padding: 20px; line-height: 1; font-family: sans-serif;"></div>
+  <div id="console" style="background: #aaa; width: 300px; position: fixed; top: 0; right: 0; text-align: center; padding: 20px; line-height: 1; font-family: sans-serif; font-size: 0.2em;"></div>
   <h1>jQuery Scroll Depth Test Page</h1>
   <div id="top" style="background: #eee; height: 500px">#top</div>
   <div id="main" style="background: #ccc; height: 2000px">#main</div>
@@ -14,19 +14,27 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="../jquery.scrolldepth.js"></script>
   <script>
+    function log(str) {
+      if ( typeof console !== 'undefined' && typeof console.log !== 'undefined' ) {
+        console.log(str);
+      }
+      var consoleElement = document.getElementById('console');
+      consoleElement.innerHTML = str + '<br/>' + consoleElement.innerHTML;
+    }
+
     var _gaq = {};
     _gaq.push = function(data) {
-      console.log("_gaq.push(" + JSON.stringify(data) + ");");
+      log("_gaq.push(" + JSON.stringify(data) + ");");
     };
 
     var dataLayer = {};
     dataLayer.push = function(data) {
-      console.log("dataLayer.push(" + JSON.stringify(data) + ");");
+      log("dataLayer.push(" + JSON.stringify(data) + ");");
     };
 
     var ga = function(params) {
       var args = Array.prototype.slice.call(arguments, 1);
-      console.log("ga(" + args.join(',') + ");");
+      log("ga(" + args.join(',') + ");");
     };
 
     _gaq = undefined;
@@ -38,7 +46,7 @@
       userTiming: true,
       gtmOverride: true,
       //eventHandler: function(data) {
-        //console.log(data)
+        //log(data)
       //}
     });
   </script>
