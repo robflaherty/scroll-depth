@@ -71,43 +71,10 @@
       };
     }
 
-    if (options.percentage) {
-      // Establish baseline (0% scroll)
-      sendBaseline('Percentage');
-    } else if (options.elements) {
-      sendBaseline('Elements');
-    }
 
     /*
      * Functions
      */
-
-    /*
-     * Putting this in a separate function because the Baseline event may soon be removed entirely
-     */
-    function sendBaseline(action, label) {
-
-      if (standardEventHandler) {
-
-        standardEventHandler({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': 'Baseline', 'eventValue': 1, 'eventNonInteraction': true });
-
-      } else {
-
-        if (universalGA) {
-
-          window[gaGlobal]('send', 'event', 'Scroll Depth', action, 'Baseline', 1, {'nonInteraction': true });
-
-        }
-
-        if (classicGA) {
-
-          _gaq.push(['_trackEvent', 'Scroll Depth', action, 'Baseline', 1, true]);
-
-        }
-
-      }
-
-    }
 
     function sendEvent(action, label, scrollDistance, timing) {
 
