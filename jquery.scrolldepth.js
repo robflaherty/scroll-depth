@@ -196,6 +196,60 @@
       return (Math.floor(scrollDistance/250) * 250).toString();
     }
 
+    function init() {
+      bindScrollDepth();
+    }
+
+    /*
+     * Public Methods
+     */
+
+    // Reset Scroll Depth with the originally initialized options
+    $.scrollDepth.reset = function() {
+      cache = [];
+      lastPixelDepth = 0;
+      $window.off('scroll.scrollDepth');
+      bindScrollDepth();
+    };
+
+    // Add DOM elements to be tracked
+    $.scrollDepth.addElements = function(elems) {
+
+      if (typeof elems == "undefined") {
+        return;
+      }
+
+      if (!$.isArray(elems)) {
+        return;
+      }
+
+      $.merge(options.elements, elems);
+
+    };
+
+    // Remove DOM elements currently tracked
+    $.scrollDepth.removeElements = function(elems) {
+
+      if (typeof elems == "undefined") {
+        return;
+      }
+
+      if (!$.isArray(elems)) {
+        return;
+      }
+
+      $.each(elems, function(index, elem) {
+
+        var inArray = $.inArray(elem, options.elements);
+
+        if (inArray != -1) {
+          options.elements.splice(inArray, 1);
+        }
+      });
+
+    };
+
+
     /*
      * Throttle function borrowed from:
      * Underscore.js 1.5.2
@@ -235,38 +289,45 @@
      * Scroll Event
      */
 
-    $window.on('scroll.scrollDepth', throttle(function() {
-      /*
-       * We calculate document and window height on each scroll event to
-       * account for dynamic DOM changes.
-       */
 
-      var docHeight = $(document).height(),
-        winHeight = window.innerHeight ? window.innerHeight : $window.height(),
-        scrollDistance = $window.scrollTop() + winHeight,
+    function bindScrollDepth() {
 
-        // Recalculate percentage marks
-        marks = calculateMarks(docHeight),
+      $window.on('scroll.scrollDepth', throttle(function() {
+        /*
+         * We calculate document and window height on each scroll event to
+         * account for dynamic DOM changes.
+         */
 
-        // Timing
-        timing = +new Date - startTime;
+        var docHeight = $(document).height(),
+          winHeight = window.innerHeight ? window.innerHeight : $window.height(),
+          scrollDistance = $window.scrollTop() + winHeight,
 
-      // If all marks already hit, unbind scroll event
-      if (cache.length >= 4 + options.elements.length) {
-        $window.off('scroll.scrollDepth');
-        return;
-      }
+          // Recalculate percentage marks
+          marks = calculateMarks(docHeight),
 
-      // Check specified DOM elements
-      if (options.elements) {
-        checkElements(options.elements, scrollDistance, timing);
-      }
+          // Timing
+          timing = +new Date - startTime;
 
-      // Check standard marks
-      if (options.percentage) {
-        checkMarks(marks, scrollDistance, timing);
-      }
-    }, 500));
+        // If all marks already hit, unbind scroll event
+        if (cache.length >= 4 + options.elements.length) {
+          $window.off('scroll.scrollDepth');
+          return;
+        }
+
+        // Check specified DOM elements
+        if (options.elements) {
+          checkElements(options.elements, scrollDistance, timing);
+        }
+
+        // Check standard marks
+        if (options.percentage) {
+          checkMarks(marks, scrollDistance, timing);
+        }
+      }, 500));
+
+    }
+
+    init();
 
   };
 
