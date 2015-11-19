@@ -213,15 +213,13 @@
     };
 
     // Add DOM elements to be tracked
-    $.scrollDepth.elemPush = function(elems) {
+    $.scrollDepth.addElements = function(elems) {
 
       if (typeof elems == "undefined") {
-        console.log('Current tracked elements: ' + options.elements);
         return;
       }
 
       if (!$.isArray(elems)) {
-        console.log('Error: Method must be passed an array');
         return;
       }
 
@@ -230,15 +228,13 @@
     };
 
     // Remove DOM elements currently tracked
-    $.scrollDepth.elemRemove = function(elems) {
+    $.scrollDepth.removeElements = function(elems) {
 
       if (typeof elems == "undefined") {
-        console.log('Current tracked elements: ' + options.elements);
         return;
       }
 
       if (!$.isArray(elems)) {
-        console.log('Error: Method must be passed an array');
         return;
       }
 
