@@ -14,6 +14,8 @@ If you have any questions you can find me on Twitter at [@robflaherty](https://t
 
 ## Changelog
 
+0.9 (11/19/15): Removed Baseline event. Added methods to add elements, remove elements, and reset the current scroll tracking state.
+
 0.8 (7/18/15): Added option for custom GA global. Added '__gaTracker' as auto-detected global. Added option for overriding GTM.
 
 0.7.2 (6/8/15): Fixed bug: https://github.com/robflaherty/jquery-scrolldepth/issues/62
