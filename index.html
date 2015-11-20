@@ -52,7 +52,7 @@
 <p>Check out some of the sites that are <a href="http://libscore.com/#$.scrollDepth" target="_blank">using Scroll Depth</a>.</p>
 
 <p class="buttons download">
-  <a href="https://raw.github.com/robflaherty/jquery-scrolldepth/master/jquery.scrolldepth.min.js" target="_blank" class="button button-download">Download (1.8 kb)</a>
+  <a href="https://raw.github.com/robflaherty/jquery-scrolldepth/master/jquery.scrolldepth.min.js" target="_blank" class="button button-download">Download (3.14 kb)</a>
   <a href="https://github.com/robflaherty/jquery-scrolldepth" target="_blank" class="button">View on Github</a>
 </p>
 
@@ -132,6 +132,24 @@ jQuery.scrollDepth({
     console.log(data)
   }
 });</code></pre>
+
+<h2>Plugin methods</h2>
+
+<h3>.reset()</h3>
+<p>This method resets the current tracking state. Roughly equivalent to reloading the page.</p>
+
+<h3>.addElements(<em>[array]</em>)</h3>
+<p>This method lets you add DOM elements to track.</p>
+
+<h3>.removeElements(<em>[array]</em>)</h3>
+<p>This method lets you remove DOM elements that are being tracked.</p>
+
+<h3>Example using methods</h3>
+<pre><code class="language-javascript">jQuery.scrollDepth.reset();
+
+jQuery.scrollDepth.addElements(['#comments', 'footer']);
+
+jQuery.scrollDepth.removeElements(['#comments']);</code></pre>
 
 <h2>Collection quotas</h2>
 <p>The current session limit for Google Analytics hits is 500 (review Google Analytics's <a href="https://developers.google.com/analytics/devguides/collection/ios/limits-quotas" target="_blank">Collection quotas</a> for more details).</p>
