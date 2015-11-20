@@ -1,6 +1,6 @@
 /*!
  * @preserve
- * jquery.scrolldepth.js | v0.8
+ * jquery.scrolldepth.js | v0.9
  * Copyright (c) 2015 Rob Flaherty (@robflaherty)
  * Licensed under the MIT and GPL licenses.
  */
@@ -21,6 +21,7 @@
 
   var $window = $(window),
     cache = [],
+    scrollEventBound = false,
     lastPixelDepth = 0,
     universalGA,
     classicGA,
@@ -70,7 +71,6 @@
         dataLayer.push(data);
       };
     }
-
 
     /*
      * Functions
@@ -132,7 +132,7 @@
         '25%' : parseInt(docHeight * 0.25, 10),
         '50%' : parseInt(docHeight * 0.50, 10),
         '75%' : parseInt(docHeight * 0.75, 10),
-        // 1px cushion to trigger 100% event in iOS
+        // Cushion to trigger 100% event in iOS
         '100%': docHeight - 5
       };
     }
@@ -182,40 +182,42 @@
     // Add DOM elements to be tracked
     $.scrollDepth.addElements = function(elems) {
 
-      if (typeof elems == "undefined") {
-        return;
-      }
-
-      if (!$.isArray(elems)) {
+      if (typeof elems == "undefined" || !$.isArray(elems)) {
         return;
       }
 
       $.merge(options.elements, elems);
+
+      // If scroll event has been unbound from window, rebind
+      if (!scrollEventBound) {
+        bindScrollDepth();
+      }
 
     };
 
     // Remove DOM elements currently tracked
     $.scrollDepth.removeElements = function(elems) {
 
-      if (typeof elems == "undefined") {
-        return;
-      }
-
-      if (!$.isArray(elems)) {
+      if (typeof elems == "undefined" || !$.isArray(elems)) {
         return;
       }
 
       $.each(elems, function(index, elem) {
 
-        var inArray = $.inArray(elem, options.elements);
+        var inElementsArray = $.inArray(elem, options.elements);
+        var inCacheArray = $.inArray(elem, cache);
 
-        if (inArray != -1) {
-          options.elements.splice(inArray, 1);
+        if (inElementsArray != -1) {
+          options.elements.splice(inElementsArray, 1);
         }
+
+        if (inCacheArray != -1) {
+          cache.splice(inCacheArray, 1);
+        }
+
       });
 
     };
-
 
     /*
      * Throttle function borrowed from:
@@ -256,8 +258,9 @@
      * Scroll Event
      */
 
-
     function bindScrollDepth() {
+
+      scrollEventBound = true;
 
       $window.on('scroll.scrollDepth', throttle(function() {
         /*
@@ -276,8 +279,9 @@
           timing = +new Date - startTime;
 
         // If all marks already hit, unbind scroll event
-        if (cache.length >= 4 + options.elements.length) {
+        if (cache.length >= options.elements.length + (options.percentage ? 4:0)) {
           $window.off('scroll.scrollDepth');
+          scrollEventBound = false;
           return;
         }
 
