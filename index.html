@@ -59,7 +59,7 @@
 <h2>The Data</h2>
 <p>Everything is sent to Google Analytics via Events. Under the Event Category "Scroll Depth" you'll see the 3 main event types: Percentage, Elements, and Pixel Depth.</p>
 
-<p>Percentage events are fired at the 25%, 50%, 75%, and 100% scrolling points. There's also a Baseline event which fires as soon as the page loads.</p>
+<p>Percentage events are fired at the 25%, 50%, 75%, and 100% scrolling points.</p>
 
 <p>The Elements events correspond to any DOM elements you may have specified in the Elements option.</p>
 
@@ -154,7 +154,7 @@ jQuery.scrollDepth.removeElements(['#comments']);</code></pre>
 <h2>Collection quotas</h2>
 <p>The current session limit for Google Analytics hits is 500 (review Google Analytics's <a href="https://developers.google.com/analytics/devguides/collection/ios/limits-quotas" target="_blank">Collection quotas</a> for more details).</p>
 
-<p>For reference, with the default use of the plugin, a pageview in which a user scrolls all the way to the bottom will trigger 13 events: 1 Baseline + 4 Percentage + 4 Pixel Depth + 4 User Timing. If you're concerned about exceeding the collection limit you can use the plugin options to reduce the types of events sent. (I'd start by disabling User Timing events.)</p>
+<p>For reference, with the default use of the plugin, a pageview in which a user scrolls all the way to the bottom will trigger 12 events: 4 Percentage + 4 Pixel Depth + 4 User Timing. If you're concerned about exceeding the collection limit you can use the plugin options to reduce the types of events sent. (I'd start by disabling User Timing events.)</p>
 
 <h2>Google Tag Manager</h2>
 <p>If you'd like to integrate with Google Tag Manager, the dataLayer variable names are below. For step-by-step instructions on how to use the plugin with Google Tag Manager, <a href="http://andygibson.us/2013/10/track-scroll-depth-using-google-tag-manager/" target="_blank">check out this blog post</a> by Andy Gibson.</p>
@@ -172,10 +172,6 @@ jQuery.scrollDepth.removeElements(['#comments']);</code></pre>
 <h2>Browser Compatibility</h2>
 
 <p>Tested in the latest versions of Chrome, Firefox, Safari, and Opera. Also works in IE 7-11. Also tested on iOS, Opera Mobile, and a few Android emulators.</p>
-
-<h2>Commercial Support</h2>
-
-<p>Under the MIT license, Scroll Depth is free to use in commercial projects. If you're interested in commercial support to help with implementation or data analysis, <a href="mailto:hello@parsnip.io">let's chat</a>.</p>
 
 <h2>Contact</h2>
 
