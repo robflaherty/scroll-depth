@@ -88,7 +88,7 @@
         }
 
         if (options.userTiming && arguments.length > 3) {
-          standardEventHandler({'event': 'ScrollTiming', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventTiming': timing});
+          standardEventHandler({'event': 'ScrollTiming', 'timingCategory': 'Scroll Depth', 'timingVar': action, 'timingLabel': label, 'timingValue': timing});
         }
 
       } else {
