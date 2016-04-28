@@ -3,6 +3,10 @@ Scroll Depth is a Google Analytics plugin that tracks how far users are scrollin
 
 **[All information is available on the Project Page](http://projects.parsnip.io/scroll-depth/)**
 
+## Forks
+* There's a [WordPress plugin](https://wordpress.org/plugins/wp-scroll-depth/) maintained by Lon Koenig.
+* There's a [non-jQuery fork](https://github.com/leighmcculloch/gascrolldepth.js) maintained by @leighmcculloch.
+
 ## Contributing
 Bug reports and code contributions are welcome. Please see [contributing.md](https://github.com/robflaherty/jquery-scrolldepth/blob/master/contributing.md).
 

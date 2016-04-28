@@ -1,0 +1,28 @@
+{
+  "name": "scroll-depth",
+  "version": "0.9.0",
+  "description": "A Google Analytics plugin for measuring page scrolling.",
+  "main": "jquery.scrolldepth.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/robflaherty/jquery-scrolldepth.git"
+  },
+  "author": "Rob Flaherty",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robflaherty/jquery-scrolldepth/issues"
+  },
+  "keywords": [
+    "scroll depth",
+    "analytics",
+    "google analytics",
+    "scrolling"
+  ],
+  "homepage": "http://scrolldepth.parsnip.io/"
+}
