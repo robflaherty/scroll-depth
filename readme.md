@@ -18,7 +18,7 @@ If you have any questions you can find me on Twitter at [@robflaherty](https://t
 
 ## Changelog
 
-0.9.1 (4/28/18): Added support for Universal Module Definition (UMD).
+0.9.1 (4/28/16): Added support for Universal Module Definition (UMD).
 
 0.9 (11/19/15): Removed Baseline event. Added methods to add elements, remove elements, and reset the current scroll tracking state.
 
