@@ -32,7 +32,8 @@
       pixelDepth: true,
       nonInteraction: true,
       gaGlobal: false,
-      gtmOverride: false
+      gtmOverride: false,
+      trackerName: ''
     };
 
     var $window = $(window),
@@ -110,16 +111,17 @@
         } else {
 
           if (universalGA) {
-
-            window[gaGlobal]('send', 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': options.nonInteraction});
+            var command = options.trackerName + (options.trackerName.length ? '.' : '') + 'send';
+            
+            window[gaGlobal](command, 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': options.nonInteraction});
 
             if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
               lastPixelDepth = scrollDistance;
-              window[gaGlobal]('send', 'event', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, {'nonInteraction': options.nonInteraction});
+              window[gaGlobal](command, 'event', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, {'nonInteraction': options.nonInteraction});
             }
 
             if (options.userTiming && arguments.length > 3) {
-              window[gaGlobal]('send', 'timing', 'Scroll Depth', action, timing, label);
+              window[gaGlobal](command, 'timing', 'Scroll Depth', action, timing, label);
             }
 
           }
