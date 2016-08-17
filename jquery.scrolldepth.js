@@ -32,7 +32,8 @@
       pixelDepth: true,
       nonInteraction: true,
       gaGlobal: false,
-      gtmOverride: false
+      gtmOverride: false,
+      dataLayer: 'dataLayer'
     };
 
     var $window = $(window),
@@ -81,10 +82,10 @@
 
       if (typeof options.eventHandler === "function") {
         standardEventHandler = options.eventHandler;
-      } else if (typeof dataLayer !== "undefined" && typeof dataLayer.push === "function" && !options.gtmOverride) {
+      } else if (typeof window[options.dataLayer] !== "undefined" && typeof window[options.dataLayer].push === "function" && !options.gtmOverride) {
 
         standardEventHandler = function(data) {
-          dataLayer.push(data);
+          window[options.dataLayer].push(data);
         };
       }
 
