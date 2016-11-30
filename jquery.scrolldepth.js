@@ -317,5 +317,8 @@
       init();
 
     };
+  
+    // UMD export
+    return $.scrollDepth;
 
 }));
