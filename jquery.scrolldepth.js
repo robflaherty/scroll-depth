@@ -96,6 +96,8 @@
 
       function sendEvent(action, label, scrollDistance, timing) {
 
+        var command = options.trackerName ? (options.trackerName + '.send') : 'send';
+
         if (standardEventHandler) {
 
           standardEventHandler({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': options.nonInteraction});
@@ -112,7 +114,6 @@
         } else {
 
           if (universalGA) {
-            var command = options.trackerName + (options.trackerName.length ? '.' : '') + 'send';
 
             window[gaGlobal](command, 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': options.nonInteraction});
 
