@@ -33,6 +33,7 @@
       nonInteraction: true,
       gaGlobal: false,
       gtmOverride: false,
+      trackerName: false,
       dataLayer: 'dataLayer'
     };
 
@@ -111,16 +112,17 @@
         } else {
 
           if (universalGA) {
+            var command = options.trackerName + (options.trackerName.length ? '.' : '') + 'send';
 
-            window[gaGlobal]('send', 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': options.nonInteraction});
+            window[gaGlobal](command, 'event', 'Scroll Depth', action, label, 1, {'nonInteraction': options.nonInteraction});
 
             if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
               lastPixelDepth = scrollDistance;
-              window[gaGlobal]('send', 'event', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, {'nonInteraction': options.nonInteraction});
+              window[gaGlobal](command, 'event', 'Scroll Depth', 'Pixel Depth', rounded(scrollDistance), 1, {'nonInteraction': options.nonInteraction});
             }
 
             if (options.userTiming && arguments.length > 3) {
-              window[gaGlobal]('send', 'timing', 'Scroll Depth', action, timing, label);
+              window[gaGlobal](command, 'timing', 'Scroll Depth', action, timing, label);
             }
 
           }
@@ -318,7 +320,7 @@
       init();
 
     };
-  
+
     // UMD export
     return $.scrollDepth;
 
