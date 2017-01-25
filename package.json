@@ -1,6 +1,6 @@
 {
   "name": "scroll-depth",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "description": "A Google Analytics plugin for measuring page scrolling.",
   "main": "jquery.scrolldepth.js",
   "directories": {
