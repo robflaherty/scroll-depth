@@ -44,6 +44,7 @@
       universalGA,
       classicGA,
       gaGlobal,
+      globalSiteTag,
       standardEventHandler;
 
     /*
@@ -69,6 +70,9 @@
       if (options.gaGlobal) {
         universalGA = true;
         gaGlobal = options.gaGlobal;
+      } else if (typeof gtag === "function") {
+        globalSiteTag = true;
+        gaGlobal = 'gtag';
       } else if (typeof ga === "function") {
         universalGA = true;
         gaGlobal = 'ga';
@@ -109,6 +113,14 @@
 
           if (options.userTiming && arguments.length > 3) {
             standardEventHandler({'event': 'ScrollTiming', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventTiming': timing});
+          }
+
+          if (globalSiteTag) {
+            gtag('event', 'scroll_depth', {
+              'category': 'Scroll Depth',
+              'scroll_distance': label,
+              'px_distance': scrollDistance
+            });
           }
 
         } else {
