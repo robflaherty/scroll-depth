@@ -1,7 +1,7 @@
 # Scroll Depth
 Scroll Depth is a Google Analytics plugin that tracks how far users are scrolling. The plugin provides native support for Universal Analytics, Classic Google Analytics, and Google Tag Manager. It can also be used with any analytics service that supports events.
 
-**[All information is available on the Project Page](http://projects.parsnip.io/scroll-depth/)**
+**[All information is available on the Project Page](https://scrolldepth.parsnip.io/)**
 
 ## Forks
 * There's a [WordPress plugin](https://wordpress.org/plugins/wp-scroll-depth/) maintained by Lon Koenig.
