@@ -37,19 +37,25 @@
       log("ga(" + args.join(',') + ");");
     };
 
+    var gtag = function(params) {
+      var args = Array.prototype.slice.call(arguments, 1);
+      log("gtag(" + args.join(',') + ");");
+    };
+
     _gaq = undefined;
     dataLayer = undefined;
-    //ga = undefined;
+    ga = undefined;
+    //gtag = undefined;
 
     $.scrollDepth({
       elements: ['#main'],
-      userTiming: false,
-      percentage: false,
-      pixelDepth: false
+      userTiming: true,
+      percentage: true,
+      pixelDepth: true,
       //gtmOverride: true,
-      //eventHandler: function(data) {
-        //log(data)
-      //}
+      // eventHandler: function(data) {
+      //   log(data)
+      // }
     });
   </script>
 </body>

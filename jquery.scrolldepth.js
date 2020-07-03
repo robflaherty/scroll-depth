@@ -1,7 +1,7 @@
 /*!
  * @preserve
- * jquery.scrolldepth.js | v1.0
- * Copyright (c) 2016 Rob Flaherty (@robflaherty)
+ * jquery.scrolldepth.js | v1.2.0
+ * Copyright (c) 2020 Rob Flaherty (@robflaherty)
  * Licensed under the MIT and GPL licenses.
  */
 
@@ -102,7 +102,20 @@
 
         var command = options.trackerName ? (options.trackerName + '.send') : 'send';
 
-        if (globalSiteTag) {
+        if (standardEventHandler) {
+
+          standardEventHandler({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': options.nonInteraction});
+
+          if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
+            lastPixelDepth = scrollDistance;
+            standardEventHandler({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': 'Pixel Depth', 'eventLabel': rounded(scrollDistance), 'eventValue': 1, 'eventNonInteraction': options.nonInteraction});
+          }
+
+          if (options.userTiming && arguments.length > 3) {
+            standardEventHandler({'event': 'ScrollTiming', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventTiming': timing});
+          }
+
+        } else if (globalSiteTag) {
 
           gtag('event', action, {
             'event_category': 'Scroll Depth',
@@ -128,19 +141,6 @@
               'event_label': label,
               'value': timing
             });
-          }
-
-        } else if (standardEventHandler) {
-
-          standardEventHandler({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': options.nonInteraction});
-
-          if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
-            lastPixelDepth = scrollDistance;
-            standardEventHandler({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': 'Pixel Depth', 'eventLabel': rounded(scrollDistance), 'eventValue': 1, 'eventNonInteraction': options.nonInteraction});
-          }
-
-          if (options.userTiming && arguments.length > 3) {
-            standardEventHandler({'event': 'ScrollTiming', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventTiming': timing});
           }
 
         } else {
