@@ -102,7 +102,35 @@
 
         var command = options.trackerName ? (options.trackerName + '.send') : 'send';
 
-        if (standardEventHandler) {
+        if (globalSiteTag) {
+
+          gtag('event', action, {
+            'event_category': 'Scroll Depth',
+            'event_label': label,
+            'value': 1,
+            'non_interaction': options.nonInteraction
+          });
+
+          if (options.pixelDepth && arguments.length > 2 && scrollDistance > lastPixelDepth) {
+            lastPixelDepth = scrollDistance;
+            gtag('event', 'Pixel Depth', {
+              'event_category': 'Scroll Depth',
+              'event_label': rounded(scrollDistance),
+              'value': 1,
+              'non_interaction': options.nonInteraction
+            });
+          }
+
+          if (options.userTiming && arguments.length > 3) {
+            gtag('event', 'timing_complete', {
+              'event_category': 'Scroll Depth',
+              'name': action,
+              'event_label': label,
+              'value': timing
+            });
+          }
+
+        } else if (standardEventHandler) {
 
           standardEventHandler({'event': 'ScrollDistance', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventValue': 1, 'eventNonInteraction': options.nonInteraction});
 
@@ -113,14 +141,6 @@
 
           if (options.userTiming && arguments.length > 3) {
             standardEventHandler({'event': 'ScrollTiming', 'eventCategory': 'Scroll Depth', 'eventAction': action, 'eventLabel': label, 'eventTiming': timing});
-          }
-
-          if (globalSiteTag) {
-            gtag('event', 'scroll_depth', {
-              'category': 'Scroll Depth',
-              'scroll_distance': label,
-              'px_distance': scrollDistance
-            });
           }
 
         } else {
