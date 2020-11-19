@@ -1,0 +1,33 @@
+{
+  "name": "scroll-depth",
+  "version": "2.0.0-beta.1",
+  "description": "A Google Analytics plugin for measuring page scrolling.",
+  "main": "dist/scrolldepth.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robflaherty/scroll-depth.git"
+  },
+  "author": "Rob Flaherty",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robflaherty/scroll-depth/issues"
+  },
+  "keywords": [
+    "scroll depth",
+    "analytics",
+    "google analytics",
+    "scrolling"
+  ],
+  "homepage": "https://scrolldepth.parsnip.io/",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@rollup/plugin-babel": "^5.2.1"
+  }
+}
