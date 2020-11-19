@@ -1,9 +1,9 @@
 # Scroll Depth 2
-Alpha version of a better way to measure scroll depth. This is the next version of the original [Scroll Depth](https://github.com/robflaherty/scroll-depth) library.
+Beta version of a better way to measure scroll depth. This is the next version of the original [Scroll Depth](https://github.com/robflaherty/scroll-depth) library.
 
 Intended for people comfortable working with GA data outside of the web UI.
 
-Features and data structure are still in flux so I'd recommend only using in test environments.
+Features and data structure are still in flux.
 
 Feedback welcome!
 
@@ -72,7 +72,5 @@ Pixel depth tracking is turned on by default. If you only want to tracking miles
 You can use this to override the function that sends data to GA with a custom function.
 
 ## Notes
-
-- Doesn't support IE11 yet
 - GA4 support coming soon
 
