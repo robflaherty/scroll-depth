@@ -53,13 +53,13 @@ If using GTM, the dataLayer variables are:
 ```
 
 ### milestones
-You can pass a list of selectors or add the class `.scroll-milestone` to elements that should be treated as milestones. If doing the latter, you need to turn on milestone tracking by setting the `milestones` option to `true`. Optionally you can specify an offset.
+You can pass a selector list or add the class `.scroll-milestone` to elements that should be treated as milestones. If the latter, you need to turn on milestone tracking by setting the `milestones` option to `true`. Optionally you can specify an offset.
 
 ```
 <script>
   scrolldepth.init({
     milestones : {
-      selectors: ['.first-milestone', '.another-milestone'],
+      selectors: ['.first-milestone .another-milestone'],
       offset: 100
     }
   })

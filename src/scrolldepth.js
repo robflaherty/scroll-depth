@@ -7,10 +7,12 @@
 
 // Default settings
 var defaults = {
-  sendEvent: sendEvent,
+  sendReport: sendReport,
   category: 'Scroll Depth',
   milestones: undefined,
-  pixelDepth: true
+  pixelDepth: true,
+  ignore: undefined,
+  container: undefined
 };
 
 var settings;
@@ -38,7 +40,7 @@ function debounce(func, wait, immediate) {
   };
 }
 
-function sendEvent(data) {
+function sendReport(data) {
   var [category, action, label, delta] = data
 
   console.log(category, action, label, delta)
@@ -82,15 +84,40 @@ function sendEvent(data) {
 
 }
 
+function setContainer() {
+  var height;
+  var ignoreHeight = 0
+
+  if (settings.container) {
+    var el = document.querySelector(settings.container);
+    height= el.getBoundingClientRect().height
+  } else {
+    height = document.documentElement.scrollHeight
+  }
+
+  if (settings.ignore) {
+    var els = document.querySelectorAll(settings.ignore);
+    els.forEach((elem) => {
+      ignoreHeight += elem.getBoundingClientRect().height
+    });
+
+  }
+
+  return height - ignoreHeight
+}
+
 function init(options) {
   settings = Object.assign(defaults, options)
 
-  var pageHeight = document.documentElement.scrollHeight
+  var pageHeight = setContainer()
   var windowHeight = window.innerHeight
+
   var offset = settings.milestones.hasOwnProperty('offset') ? settings.milestones.offset : 0;
   var selectors = settings.milestones.hasOwnProperty('selectors') ? settings.milestones.selectors : ['.scroll-milestone'];
 
   var pageId = new Date().getTime() + '.' + Math.floor(10000 + Math.random() * 90000) + '.' + pageHeight + '.' + windowHeight
+
+  console.log(pageHeight)
 
   var lastDepth = 0
   var lastReportedDepth = 0
@@ -103,15 +130,10 @@ function init(options) {
   var zeroSent = false;
 
   if (settings.milestones) {
-
-    selectors.forEach((selector) => {
-
-      var milestones = document.querySelectorAll(selector);
-      milestones.forEach((elem) => {
-        var distanceFromTop= elem.getBoundingClientRect().top + window.pageYOffset
-        milestoneList.push(distanceFromTop)
-      });
-
+    var milestones = document.querySelectorAll(selectors);
+    milestones.forEach((elem) => {
+      var distanceFromTop= elem.getBoundingClientRect().top + window.pageYOffset
+      milestoneList.push(distanceFromTop)
     });
 
   }
@@ -160,19 +182,19 @@ function init(options) {
         lastReportedDepth = depth;
 
         if (settings.pixelDepth) {
-          settings.sendEvent([settings.category, 'Pixel Depth', pageId, delta])
+          settings.sendReport([settings.category, 'Pixel Depth', pageId, delta])
         }
 
         if (settings.milestones) {
           var milestonesToReport = passedMilestones.length - lastReportedMilestone
 
           if (milestonesToReport) {
-            settings.sendEvent([settings.category, 'Milestones', pageId, milestonesToReport])
+            settings.sendReport([settings.category, 'Milestones', pageId, milestonesToReport])
             lastReportedMilestone += milestonesToReport
           }
 
           if (lastReportedMilestone == 0 && !zeroSent) {
-            settings.sendEvent([settings.category, 'Milestones', pageId, 0])
+            settings.sendReport([settings.category, 'Milestones', pageId, 0])
             zeroSent = true;
           }
 
@@ -189,4 +211,3 @@ function init(options) {
 export default {
    init: init
 };
-

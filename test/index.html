@@ -37,9 +37,11 @@
   <script>
     scrolldepth.init({
       mode: 'gtag',
+      //container: '.scroll-milestone2',
+      // ignore: ['.scroll-milestone2, .scroll-milestone3'],
       milestones : {
         offset: 100,
-        selectors: ['.scroll-milestone2', '.scroll-milestone3']
+        selectors: ['.scroll-milestone2, .scroll-milestone3']
       },
       // sendEvent: function(e) {
       //   console.log(e)
